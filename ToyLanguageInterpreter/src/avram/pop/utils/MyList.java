@@ -16,6 +16,20 @@ public class MyList<T> implements MyIList<T> {
     }
 
     @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("List: [");
+        list.forEach(e -> sb.append(e.toString()).append(", "));
+        sb.append("]");
+        return sb.toString();
+    }
+
+    @Override
+    public void add(T elem){
+        list.add(elem);
+    }
+
+    @Override
     public void remove(int index){
         list.remove(index);
     }

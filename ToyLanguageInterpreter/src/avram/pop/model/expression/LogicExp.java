@@ -33,4 +33,13 @@ public class LogicExp implements Exp {
             } else throw new MyException("Operand2 is not a boolean");
         } else throw new MyException("Operand1 is not a boolean");
     }
+
+    @Override
+    public String toString(){
+        return "LogicExp{" +
+                "e1=" + e1 +
+                ", e2=" + e2 +
+                ", op=" + op +
+                '}';
+    }
 }

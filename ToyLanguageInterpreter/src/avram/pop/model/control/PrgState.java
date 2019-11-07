@@ -31,4 +31,29 @@ public class PrgState {
     public MyIDictionary<String, Value> getSymTable(){
         return symTable;
     }
+
+    public MyIList<Value> getOut(){
+        return out;
+    }
+
+    public void setExeStack(MyIStack<IStmt> exeStack){
+        this.exeStack = exeStack;
+    }
+
+    public void setSymTable(MyIDictionary<String, Value> symTable){
+        this.symTable = symTable;
+    }
+
+    public void setOut(MyIList<Value> out){
+        this.out = out;
+    }
+
+    @Override
+    public String toString(){
+        return "PrgState: {\n" +
+                "exeStack = " + exeStack.toString() +
+                ",\nsymTable = " + symTable.toString() +
+                ",\nout = " + out.toString() +
+                "\n}";
+    }
 }

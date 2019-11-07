@@ -23,4 +23,13 @@ public class MyStack<T> implements MyIStack<T> {
     public boolean isEmpty(){
         return stack.isEmpty();
     }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Stack: [");
+        stack.forEach(e -> sb.append(e.toString()).append(", "));
+        sb.append("]");
+        return sb.toString();
+    }
 }

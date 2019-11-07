@@ -1,7 +1,5 @@
 package avram.pop.utils;
 
-import avram.pop.model.value.Value;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +7,19 @@ public class MyDictionary<K, V> implements MyIDictionary<K, V> {
     private Map<K, V> map;
 
     public MyDictionary(){
-        map = new HashMap<K, V>();
+        map = new HashMap<>();
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Dictionary: {");
+        map.forEach((k, v) -> sb.append(k.toString())
+                .append(": ")
+                .append(v.toString())
+                .append(", "));
+        sb.append("}");
+        return sb.toString();
     }
 
     @Override

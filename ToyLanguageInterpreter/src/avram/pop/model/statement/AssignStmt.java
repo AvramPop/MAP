@@ -1,5 +1,6 @@
 package avram.pop.model.statement;
 
+import avram.pop.model.expression.ValueExp;
 import avram.pop.utils.MyException;
 import avram.pop.utils.MyIDictionary;
 import avram.pop.utils.MyIStack;
@@ -8,9 +9,14 @@ import avram.pop.model.type.Type;
 import avram.pop.model.value.Value;
 import avram.pop.model.expression.Exp;
 
-public class AssignStmt {
+public class AssignStmt implements IStmt{
     private String id;
     private Exp exp;
+
+    public AssignStmt(String v, Exp exp){
+        id = v;
+        this.exp = exp;
+    }
 
     public String toString(){
         return id + "=" + exp.toString();
@@ -28,7 +34,7 @@ public class AssignStmt {
             } else {
                 throw new MyException("declared type of variable" + id + " and type of the assigned expression do not match ");
             }
-        } else{
+        } else {
             throw new MyException("the used variable" + id + " was not declared before");
         }
         return state;

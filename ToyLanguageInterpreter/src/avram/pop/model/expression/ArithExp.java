@@ -11,6 +11,28 @@ public class ArithExp implements Exp {
     private Exp e2;
     private int op; //1-plus, 2-minus, 3-star, 4-divide
 
+    public ArithExp(char c, Exp valueExp, Exp valueExp1){
+        e1 = valueExp;
+        e2 = valueExp1;
+        if(c == '+'){
+            op = 1;
+        } else if(c == '-'){
+            op = 2;
+        } else if(c == '*'){
+            op = 3;
+        } else {
+            op = 4;
+        }
+    }
+
+    @Override
+    public String toString(){
+        return "ArithExp{" +
+                "e1=" + e1 +
+                ", e2=" + e2 +
+                ", op=" + op +
+                '}';
+    }
 
     public Value eval(MyIDictionary<String, Value> tbl) throws MyException{
         Value v1, v2;

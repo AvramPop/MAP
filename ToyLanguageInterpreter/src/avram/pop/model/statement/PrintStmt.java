@@ -1,6 +1,5 @@
 package avram.pop.model.statement;
 
-import avram.pop.model.expression.VarExp;
 import avram.pop.model.value.Value;
 import avram.pop.utils.MyException;
 import avram.pop.model.control.PrgState;

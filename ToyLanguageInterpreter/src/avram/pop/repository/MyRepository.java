@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyRepository implements MyIRepository {
-    List<PrgState> states;
+    private List<PrgState> states;
 
     public MyRepository(){
         this.states = new ArrayList<>();

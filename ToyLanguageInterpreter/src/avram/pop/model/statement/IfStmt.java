@@ -1,6 +1,5 @@
 package avram.pop.model.statement;
 
-import avram.pop.model.expression.LogicExp;
 import avram.pop.model.type.BoolType;
 import avram.pop.model.value.BoolValue;
 import avram.pop.model.value.Value;

@@ -11,8 +11,12 @@ public class MyList<T> implements MyIList<T> {
     }
 
     @Override
-    public void add(int index, T elem){
-        list.add(index, elem);
+    public void add(int index, T elem) throws MyException{
+        if(index < list.size()){
+            list.add(index, elem);
+        } else {
+            throw new MyException("index not in list");
+        }
     }
 
     @Override
@@ -30,12 +34,20 @@ public class MyList<T> implements MyIList<T> {
     }
 
     @Override
-    public void remove(int index){
-        list.remove(index);
+    public void remove(int index) throws MyException{
+        if(index < list.size()){
+            list.remove(index);
+        } else {
+            throw new MyException("index not in list");
+        }
     }
 
     @Override
-    public T get(int index){
-        return list.get(index);
+    public T get(int index) throws MyException{
+        if(index < list.size()){
+            return list.get(index);
+        } else {
+            throw new MyException("index not in list");
+        }
     }
 }

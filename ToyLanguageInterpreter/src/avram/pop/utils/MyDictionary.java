@@ -28,8 +28,12 @@ public class MyDictionary<K, V> implements MyIDictionary<K, V> {
     }
 
     @Override
-    public V lookup(K id){
-        return map.get(id);
+    public V lookup(K id) throws MyException{
+        if(isDefined(id)){
+            return map.get(id);
+        } else {
+            throw new MyException(id + " not a key in dictionary");
+        }
     }
 
     @Override

@@ -6,12 +6,16 @@ public class MyStack<T> implements MyIStack<T> {
     private Stack<T> stack;
 
     public MyStack(){
-        stack = new Stack<T>();
+        stack = new Stack<>();
     }
 
     @Override
-    public T pop(){
-        return stack.pop();
+    public T pop() throws MyException{
+        if(!stack.isEmpty()){
+            return stack.pop();
+        } else {
+            throw new MyException("stack is empty");
+        }
     }
 
     @Override

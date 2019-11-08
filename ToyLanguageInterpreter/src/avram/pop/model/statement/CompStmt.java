@@ -2,7 +2,7 @@ package avram.pop.model.statement;
 
 import avram.pop.utils.MyException;
 import avram.pop.utils.MyIStack;
-import avram.pop.model.control.PrgState;
+import avram.pop.model.control.ProgramState;
 
 public class CompStmt implements IStmt {
     private IStmt first;
@@ -14,10 +14,10 @@ public class CompStmt implements IStmt {
     }
 
     public String toString(){
-        return "(" + first.toString() + ";" + snd.toString() + ")";
+        return "(" + first.toString() + "; " + snd.toString() + ")";
     }
 
-    public PrgState execute(PrgState state) throws MyException{
+    public ProgramState execute(ProgramState state) throws MyException{
         MyIStack<IStmt> stk = state.getStk();
         stk.push(snd);
         stk.push(first);

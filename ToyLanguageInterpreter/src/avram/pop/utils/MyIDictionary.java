@@ -6,4 +6,8 @@ public interface MyIDictionary<K, V> {
     V lookup(K id) throws MyException;
 
     void update(K id, V val);
+
+    String toLogString();
+
+    void removeEntry(K id);
 }

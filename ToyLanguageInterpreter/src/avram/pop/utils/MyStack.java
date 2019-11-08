@@ -29,11 +29,18 @@ public class MyStack<T> implements MyIStack<T> {
     }
 
     @Override
+    public String toLogString(){
+        StringBuilder sb = new StringBuilder();
+        for(T entry : stack){
+            sb.append(entry.toString()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Stack: [");
-        stack.forEach(e -> sb.append(e.toString()).append(", "));
-        sb.append("]");
+        stack.forEach(e -> sb.append(e.toString()).append('\n'));
         return sb.toString();
     }
 }

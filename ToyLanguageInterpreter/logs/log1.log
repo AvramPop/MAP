@@ -1,0 +1,42 @@
+ExeStack:
+(VarDeclStmt{name='v', typ=int}; (v=ValueExp{e=(int) value is: 2}; print(VarExp{id='v'})))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(v=ValueExp{e=(int) value is: 2}; print(VarExp{id='v'}))
+VarDeclStmt{name='v', typ=int}
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(v=ValueExp{e=(int) value is: 2}; print(VarExp{id='v'}))
+SymTable:
+v: (int) value is: 0
+Out:
+FileTable:
+
+ExeStack:
+print(VarExp{id='v'})
+v=ValueExp{e=(int) value is: 2}
+SymTable:
+v: (int) value is: 0
+Out:
+FileTable:
+
+ExeStack:
+print(VarExp{id='v'})
+SymTable:
+v: (int) value is: 2
+Out:
+FileTable:
+
+ExeStack:
+SymTable:
+v: (int) value is: 2
+Out:
+(int) value is: 2
+FileTable:
+

@@ -22,9 +22,7 @@ public class MyList<T> implements MyIList<T> {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("List: [");
-        list.forEach(e -> sb.append(e.toString()).append(", "));
-        sb.append("]");
+        list.forEach(e -> sb.append(e.toString()).append("\n"));
         return sb.toString();
     }
 
@@ -49,5 +47,14 @@ public class MyList<T> implements MyIList<T> {
         } else {
             throw new MyException("index not in list");
         }
+    }
+
+    @Override
+    public String toLogString(){
+        StringBuilder sb = new StringBuilder();
+        for(T entry : list){
+            sb.append(entry.toString()).append("\n");
+        }
+        return sb.toString();
     }
 }

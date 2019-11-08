@@ -4,14 +4,14 @@ import avram.pop.utils.MyException;
 import avram.pop.utils.MyIDictionary;
 import avram.pop.model.type.IntType;
 import avram.pop.model.value.IntValue;
-import avram.pop.model.value.Value;
+import avram.pop.model.value.IValue;
 
-public class ArithExp implements Exp {
-    private Exp e1;
-    private Exp e2;
+public class ArithExp implements Expression {
+    private Expression e1;
+    private Expression e2;
     private int op; //1-plus, 2-minus, 3-star, 4-divide
 
-    public ArithExp(char c, Exp valueExp, Exp valueExp1){
+    public ArithExp(char c, Expression valueExp, Expression valueExp1){
         e1 = valueExp;
         e2 = valueExp1;
         if(c == '+'){
@@ -34,8 +34,8 @@ public class ArithExp implements Exp {
                 '}';
     }
 
-    public Value eval(MyIDictionary<String, Value> tbl) throws MyException{
-        Value v1, v2;
+    public IValue eval(MyIDictionary<String, IValue> tbl) throws MyException{
+        IValue v1, v2;
         v1 = e1.eval(tbl);
         if(v1.getType().equals(new IntType())){
             v2 = e2.eval(tbl);

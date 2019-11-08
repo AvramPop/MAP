@@ -4,14 +4,14 @@ import avram.pop.model.type.BoolType;
 import avram.pop.model.value.BoolValue;
 import avram.pop.utils.MyException;
 import avram.pop.utils.MyIDictionary;
-import avram.pop.model.value.Value;
+import avram.pop.model.value.IValue;
 
-public class LogicExp implements Exp {
-    private Exp e1;
-    private Exp e2;
+public class LogicExp implements Expression {
+    private Expression e1;
+    private Expression e2;
     private int op; // 1 for and 2 for or
 
-    public LogicExp(Exp e1, Exp e2, String op){
+    public LogicExp(Expression e1, Expression e2, String op){
         this.e1 = e1;
         this.e2 = e2;
         if(op.equals("and")){
@@ -22,8 +22,8 @@ public class LogicExp implements Exp {
     }
 
     @Override
-    public Value eval(MyIDictionary<String, Value> tbl) throws MyException{
-        Value v1, v2;
+    public IValue eval(MyIDictionary<String, IValue> tbl) throws MyException{
+        IValue v1, v2;
         v1 = e1.eval(tbl);
         if(v1.getType().equals(new BoolType())){
             v2 = e2.eval(tbl);

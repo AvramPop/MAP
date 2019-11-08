@@ -2,29 +2,29 @@ package avram.pop.model.statement;
 
 import avram.pop.model.type.BoolType;
 import avram.pop.model.value.BoolValue;
-import avram.pop.model.value.Value;
+import avram.pop.model.value.IValue;
 import avram.pop.utils.MyException;
-import avram.pop.model.control.PrgState;
-import avram.pop.model.expression.Exp;
+import avram.pop.model.control.ProgramState;
+import avram.pop.model.expression.Expression;
 
 public class IfStmt implements IStmt {
-    private Exp exp;
+    private Expression expression;
     private IStmt thenS;
     private IStmt elseS;
 
-    public IfStmt(Exp e, IStmt t, IStmt el){
-        exp = e;
+    public IfStmt(Expression e, IStmt t, IStmt el){
+        expression = e;
         thenS = t;
         elseS = el;
     }
 
     public String toString(){
-        return "(IF(" + exp.toString() + ") THEN(" + thenS.toString()
+        return "(IF(" + expression.toString() + ") THEN(" + thenS.toString()
                 + ")ELSE(" + elseS.toString() + "))";
     }
 
-    public PrgState execute(PrgState state) throws MyException{
-        Value cond = exp.eval(state.getSymTable());
+    public ProgramState execute(ProgramState state) throws MyException{
+        IValue cond = expression.eval(state.getSymTable());
         if(cond.getType().equals(new BoolType())){
             BoolValue booleanCondition = (BoolValue) cond;
             if(booleanCondition.getVal()){

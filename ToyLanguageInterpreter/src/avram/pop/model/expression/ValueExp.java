@@ -2,10 +2,10 @@ package avram.pop.model.expression;
 
 import avram.pop.utils.MyException;
 import avram.pop.utils.MyIDictionary;
-import avram.pop.model.value.Value;
+import avram.pop.model.value.IValue;
 
-public class ValueExp implements Exp {
-    private Value e;
+public class ValueExp implements Expression {
+    private IValue e;
 
     @Override
     public String toString(){
@@ -14,12 +14,12 @@ public class ValueExp implements Exp {
                 '}';
     }
 
-    public ValueExp(Value value){
-        e = value;
+    public ValueExp(IValue iValue){
+        e = iValue;
     }
 
     @Override
-    public Value eval(MyIDictionary<String, Value> tbl) throws MyException{
+    public IValue eval(MyIDictionary<String, IValue> tbl) throws MyException{
         return e;
     }
 }

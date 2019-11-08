@@ -6,4 +6,5 @@ public interface MyIList<T> {
     void remove(int index) throws MyException;
     T get(int index) throws MyException;
 
+    String toLogString();
 }

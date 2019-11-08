@@ -2,32 +2,30 @@ package avram.pop.model.statement;
 
 import avram.pop.utils.MyException;
 import avram.pop.utils.MyIDictionary;
-import avram.pop.utils.MyIStack;
-import avram.pop.model.control.PrgState;
-import avram.pop.model.type.Type;
-import avram.pop.model.value.Value;
-import avram.pop.model.expression.Exp;
+import avram.pop.model.control.ProgramState;
+import avram.pop.model.type.IType;
+import avram.pop.model.value.IValue;
+import avram.pop.model.expression.Expression;
 
 public class AssignStmt implements IStmt{
     private String id;
-    private Exp exp;
+    private Expression expression;
 
-    public AssignStmt(String v, Exp exp){
+    public AssignStmt(String v, Expression expression){
         id = v;
-        this.exp = exp;
+        this.expression = expression;
     }
 
     public String toString(){
-        return id + "=" + exp.toString();
+        return id + "=" + expression.toString();
     }
 
-    public PrgState execute(PrgState state) throws MyException{
-        MyIStack<IStmt> stk = state.getStk();
-        MyIDictionary<String, Value> symTbl = state.getSymTable();
+    public ProgramState execute(ProgramState state) throws MyException{
+        MyIDictionary<String, IValue> symTbl = state.getSymTable();
 
         if(symTbl.isDefined(id)){
-            Value val = exp.eval(symTbl);
-            Type typId = (symTbl.lookup(id)).getType();
+            IValue val = expression.eval(symTbl);
+            IType typId = (symTbl.lookup(id)).getType();
             if(val.getType().equals(typId)){
                 symTbl.update(id, val);
             } else {

@@ -4,7 +4,7 @@ import avram.pop.repository.MyIRepository;
 import avram.pop.utils.MyException;
 import avram.pop.model.statement.IStmt;
 import avram.pop.utils.MyIStack;
-import avram.pop.model.control.PrgState;
+import avram.pop.model.control.ProgramState;
 
 public class Controller {
     private MyIRepository repo;
@@ -13,7 +13,7 @@ public class Controller {
         this.repo = repo;
     }
 
-    private PrgState oneStep(PrgState state) throws MyException{
+    public ProgramState oneStep(ProgramState state) throws MyException{
         MyIStack<IStmt> stk = state.getStk();
         if(stk.isEmpty()) throw new MyException("program stack is empty");
         IStmt crtStmt = stk.pop();
@@ -21,11 +21,11 @@ public class Controller {
     }
 
     public void allStep() throws MyException{
-        PrgState prg = repo.getCrtPrg();
-        System.out.println(prg.toString());
+        ProgramState prg = repo.getCrtPrg();
+        repo.logPrgStateExec();
         while(!prg.getStk().isEmpty()){
             oneStep(prg);
-            System.out.println(prg.toString());
+            repo.logPrgStateExec();
         }
     }
 }

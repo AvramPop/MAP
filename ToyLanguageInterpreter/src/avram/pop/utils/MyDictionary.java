@@ -1,5 +1,7 @@
 package avram.pop.utils;
 
+import javafx.util.Pair;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,12 +15,10 @@ public class MyDictionary<K, V> implements MyIDictionary<K, V> {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Dictionary: {");
         map.forEach((k, v) -> sb.append(k.toString())
-                .append(": ")
+                .append(" ")
                 .append(v.toString())
-                .append(", "));
-        sb.append("}");
+                .append('\n'));
         return sb.toString();
     }
 
@@ -39,5 +39,19 @@ public class MyDictionary<K, V> implements MyIDictionary<K, V> {
     @Override
     public void update(K id, V val){
         map.put(id, val);
+    }
+
+    @Override
+    public String toLogString(){
+        StringBuilder logString = new StringBuilder();
+        for(Map.Entry<K, V> entry : map.entrySet()){
+            logString.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+        }
+        return logString.toString();
+    }
+
+    @Override
+    public void removeEntry(K id){
+        map.remove(id);
     }
 }

@@ -1,25 +1,25 @@
 package avram.pop.model.statement;
 
-import avram.pop.model.value.Value;
+import avram.pop.model.value.IValue;
 import avram.pop.utils.MyException;
-import avram.pop.model.control.PrgState;
-import avram.pop.model.expression.Exp;
+import avram.pop.model.control.ProgramState;
+import avram.pop.model.expression.Expression;
 import avram.pop.utils.MyIList;
 
 public class PrintStmt implements IStmt {
-    private Exp exp;
+    private Expression expression;
 
-    public PrintStmt(Exp exp){
-        this.exp = exp;
+    public PrintStmt(Expression expression){
+        this.expression = expression;
     }
 
     public String toString(){
-        return ("print(" + exp.toString() + ")");
+        return ("print(" + expression.toString() + ")");
     }
 
-    public PrgState execute(PrgState state) throws MyException{
-        MyIList<Value> out = state.getOut();
-        out.add(exp.eval(state.getSymTable()));
+    public ProgramState execute(ProgramState state) throws MyException{
+        MyIList<IValue> out = state.getOut();
+        out.add(expression.eval(state.getSymTable()));
         return state;
     }
 }

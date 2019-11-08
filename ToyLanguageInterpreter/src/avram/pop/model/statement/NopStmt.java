@@ -1,11 +1,12 @@
 package avram.pop.model.statement;
 
 import avram.pop.utils.MyException;
-import avram.pop.model.control.PrgState;
+import avram.pop.model.control.ProgramState;
 
 public class NopStmt implements IStmt {
     @Override
-    public PrgState execute(PrgState state) throws MyException{
+    public ProgramState execute(ProgramState state) throws MyException{
         return state;
     }
+
 }

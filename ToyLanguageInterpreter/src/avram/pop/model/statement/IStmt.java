@@ -1,8 +1,8 @@
 package avram.pop.model.statement;
 
 import avram.pop.utils.MyException;
-import avram.pop.model.control.PrgState;
+import avram.pop.model.control.ProgramState;
 
 public interface IStmt {
-    PrgState execute(PrgState state) throws MyException;
+    ProgramState execute(ProgramState state) throws MyException;
 }

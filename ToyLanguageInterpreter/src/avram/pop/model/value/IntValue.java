@@ -1,9 +1,11 @@
 package avram.pop.model.value;
 
 import avram.pop.model.type.IntType;
-import avram.pop.model.type.Type;
+import avram.pop.model.type.IType;
 
-public class IntValue implements Value {
+import java.util.Objects;
+
+public class IntValue implements IValue {
     private int val;
 
     public IntValue(int v){
@@ -15,10 +17,23 @@ public class IntValue implements Value {
     }
 
     public String toString(){
-        return "int value is: " + val;
+        return "(int) value is: " + val;
     }
 
-    public Type getType(){
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        IntValue intValue = (IntValue) o;
+        return val == intValue.val;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(val);
+    }
+
+    public IType getType(){
         return new IntType();
     }
 }

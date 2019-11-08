@@ -6,18 +6,18 @@ import avram.pop.model.type.Type;
 import java.util.Objects;
 
 public class IntValue implements Value {
-    private int val;
+    private int value;
 
     public IntValue(int v){
-        val = v;
+        value = v;
     }
 
-    public int getVal(){
-        return val;
+    public int getValue(){
+        return value;
     }
 
     public String toString(){
-        return "(int) value is: " + val;
+        return "(int) value is: " + value;
     }
 
     @Override
@@ -25,12 +25,12 @@ public class IntValue implements Value {
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
         IntValue intValue = (IntValue) o;
-        return val == intValue.val;
+        return value == intValue.value;
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(val);
+        return Objects.hash(value);
     }
 
     public Type getType(){

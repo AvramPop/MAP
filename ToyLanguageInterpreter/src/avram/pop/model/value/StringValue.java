@@ -6,31 +6,31 @@ import avram.pop.model.type.Type;
 import java.util.Objects;
 
 public class StringValue implements Value {
-    private String val;
+    private String value;
 
     @Override
     public boolean equals(Object o){
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
         StringValue that = (StringValue) o;
-        return val.equals(that.val);
+        return value.equals(that.value);
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(val);
+        return Objects.hash(value);
     }
 
     public StringValue(String v){
-        val = v;
+        value = v;
     }
 
-    public String getVal(){
-        return val;
+    public String getValue(){
+        return value;
     }
 
     public String toString(){
-        return "(string) value is: " + val;
+        return "(string) value is: " + value;
     }
 
     public Type getType(){

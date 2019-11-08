@@ -9,28 +9,28 @@ import avram.pop.model.expression.Expression;
 
 public class IfStatement implements Statement {
     private Expression expression;
-    private Statement thenS;
-    private Statement elseS;
+    private Statement thenBranchStatement;
+    private Statement elseBranchStatement;
 
-    public IfStatement(Expression e, Statement t, Statement el){
-        expression = e;
-        thenS = t;
-        elseS = el;
+    public IfStatement(Expression expression, Statement thenBranchStatement, Statement elseBranchStatement){
+        this.expression = expression;
+        this.thenBranchStatement = thenBranchStatement;
+        this.elseBranchStatement = elseBranchStatement;
     }
 
     public String toString(){
-        return "(IF(" + expression.toString() + ") THEN(" + thenS.toString()
-                + ")ELSE(" + elseS.toString() + "))";
+        return "(IF(" + expression.toString() + ") THEN(" + thenBranchStatement.toString()
+                + ")ELSE(" + elseBranchStatement.toString() + "))";
     }
 
     public ProgramState execute(ProgramState state) throws MyException{
-        Value cond = expression.eval(state.getSymTable());
-        if(cond.getType().equals(new BoolType())){
-            BoolValue booleanCondition = (BoolValue) cond;
-            if(booleanCondition.getVal()){
-                state.getStk().push(thenS);
+        Value condition = expression.evaluate(state.getSymbolTable());
+        if(condition.getType().equals(new BoolType())){
+            BoolValue booleanCondition = (BoolValue) condition;
+            if(booleanCondition.getValue()){
+                state.getExecutionStack().push(thenBranchStatement);
             } else {
-                state.getStk().push(elseS);
+                state.getExecutionStack().push(elseBranchStatement);
             }
         } else {
             throw new MyException("conditional expr is not a boolean");

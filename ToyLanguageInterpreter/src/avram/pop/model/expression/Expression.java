@@ -5,5 +5,5 @@ import avram.pop.utils.DictionaryInterface;
 import avram.pop.model.value.Value;
 
 public interface Expression {
-    Value eval(DictionaryInterface<String, Value> tbl) throws MyException;
+    Value evaluate(DictionaryInterface<String, Value> tbl) throws MyException;
 }

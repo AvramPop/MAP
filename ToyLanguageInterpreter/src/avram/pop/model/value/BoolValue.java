@@ -6,18 +6,18 @@ import avram.pop.model.type.Type;
 import java.util.Objects;
 
 public class BoolValue implements Value {
-    private boolean val;
+    private boolean value;
 
     public BoolValue(boolean v){
-        val = v;
+        value = v;
     }
 
-    public boolean getVal(){
-        return val;
+    public boolean getValue(){
+        return value;
     }
 
     public String toString(){
-        return "(bool) value is: " + val;
+        return "(bool) value is: " + value;
     }
 
     public Type getType(){
@@ -29,11 +29,11 @@ public class BoolValue implements Value {
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
         BoolValue boolValue = (BoolValue) o;
-        return val == boolValue.val;
+        return value == boolValue.value;
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(val);
+        return Objects.hash(value);
     }
 }

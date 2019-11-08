@@ -7,48 +7,48 @@ import avram.pop.model.value.IntValue;
 import avram.pop.model.value.Value;
 
 public class ArithmeticExpression implements Expression {
-    private Expression e1;
-    private Expression e2;
-    private int op; //1-plus, 2-minus, 3-star, 4-divide
+    private Expression firstOperand;
+    private Expression secondOperand;
+    private int operationCode; //1-plus, 2-minus, 3-star, 4-divide
 
-    public ArithmeticExpression(char c, Expression valueExp, Expression valueExp1){
-        e1 = valueExp;
-        e2 = valueExp1;
-        if(c == '+'){
-            op = 1;
-        } else if(c == '-'){
-            op = 2;
-        } else if(c == '*'){
-            op = 3;
+    public ArithmeticExpression(char operationSymbol, Expression firstOperand, Expression secondOperand){
+        this.firstOperand = firstOperand;
+        this.secondOperand = secondOperand;
+        if(operationSymbol == '+'){
+            operationCode = 1;
+        } else if(operationSymbol == '-'){
+            operationCode = 2;
+        } else if(operationSymbol == '*'){
+            operationCode = 3;
         } else {
-            op = 4;
+            operationCode = 4;
         }
     }
 
     @Override
     public String toString(){
         return "ArithExp{" +
-                "e1=" + e1 +
-                ", e2=" + e2 +
-                ", op=" + op +
+                "e1=" + firstOperand +
+                ", e2=" + secondOperand +
+                ", op=" + operationCode +
                 '}';
     }
 
-    public Value eval(DictionaryInterface<String, Value> tbl) throws MyException{
+    public Value evaluate(DictionaryInterface<String, Value> symbolTable) throws MyException{
         Value v1, v2;
-        v1 = e1.eval(tbl);
+        v1 = firstOperand.evaluate(symbolTable);
         if(v1.getType().equals(new IntType())){
-            v2 = e2.eval(tbl);
+            v2 = secondOperand.evaluate(symbolTable);
             if(v2.getType().equals(new IntType())){
                 IntValue i1 = (IntValue) v1;
                 IntValue i2 = (IntValue) v2;
                 int n1, n2;
-                n1 = i1.getVal();
-                n2 = i2.getVal();
-                if(op == 1) return new IntValue(n1 + n2);
-                if(op == 2) return new IntValue(n1 - n2);
-                if(op == 3) return new IntValue(n1 * n2);
-                if(op == 4){
+                n1 = i1.getValue();
+                n2 = i2.getValue();
+                if(operationCode == 1) return new IntValue(n1 + n2);
+                if(operationCode == 2) return new IntValue(n1 - n2);
+                if(operationCode == 3) return new IntValue(n1 * n2);
+                if(operationCode == 4){
                     if(n2 == 0) throw new MyException("division by zero");
                     else return new IntValue(n1 / n2);
                 }

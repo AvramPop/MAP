@@ -13,30 +13,30 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class OpenReadFileStatement implements Statement {
-    private Expression exp;
+    private Expression expression;
 
-    public OpenReadFileStatement(Expression exp){
-        this.exp = exp;
+    public OpenReadFileStatement(Expression expression){
+        this.expression = expression;
     }
 
     @Override
     public String toString(){
         return "OpenRFileStmt{" +
-                "exp=" + exp +
+                "exp=" + expression +
                 '}';
     }
 
     @Override
     public ProgramState execute(ProgramState state) throws MyException{
-        DictionaryInterface<String, Value> symTbl = state.getSymTable();
+        DictionaryInterface<String, Value> symbolTable = state.getSymbolTable();
         DictionaryInterface<StringValue, BufferedReader> fileTable = state.getFileTable();
-        if(exp.eval(symTbl).getType().equals(new StringType())){
-            Value val = exp.eval(symTbl);
-            StringValue expAsStringValue = (StringValue) val;
-            if(!fileTable.isDefined(expAsStringValue)){
+        if(expression.evaluate(symbolTable).getType().equals(new StringType())){
+            Value value = expression.evaluate(symbolTable);
+            StringValue expressionAsStringValue = (StringValue) value;
+            if(!fileTable.isDefined(expressionAsStringValue)){
                 try{
-                    BufferedReader bufferedReader = new BufferedReader(new FileReader(expAsStringValue.getVal()));
-                    fileTable.update(expAsStringValue, bufferedReader);
+                    BufferedReader bufferedReader = new BufferedReader(new FileReader(expressionAsStringValue.getValue()));
+                    fileTable.update(expressionAsStringValue, bufferedReader);
                 } catch(FileNotFoundException e){
                     throw new MyException("error opening file");
                 }

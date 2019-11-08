@@ -12,19 +12,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class CloseReadFileStatement implements Statement {
-    private Expression exp;
+    private Expression expression;
 
-    public CloseReadFileStatement(Expression exp){
-        this.exp = exp;
+    public CloseReadFileStatement(Expression expression){
+        this.expression = expression;
     }
 
     @Override
     public ProgramState execute(ProgramState state) throws MyException{
-        DictionaryInterface<String, Value> symTbl = state.getSymTable();
+        DictionaryInterface<String, Value> symbolTable = state.getSymbolTable();
         DictionaryInterface<StringValue, BufferedReader> fileTable = state.getFileTable();
-        if(exp.eval(symTbl).getType().equals(new StringType())){
-            Value val = exp.eval(symTbl);
-            StringValue expAsStringValue = (StringValue) val;
+        if(expression.evaluate(symbolTable).getType().equals(new StringType())){
+            Value value = expression.evaluate(symbolTable);
+            StringValue expAsStringValue = (StringValue) value;
             if(fileTable.isDefined(expAsStringValue)){
                 BufferedReader bufferedReader = fileTable.lookup(expAsStringValue);
                 try{
@@ -45,7 +45,7 @@ public class CloseReadFileStatement implements Statement {
     @Override
     public String toString(){
         return "CloseRFileStmt{" +
-                "exp=" + exp +
+                "exp=" + expression +
                 '}';
     }
 }

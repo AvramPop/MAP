@@ -7,27 +7,27 @@ import avram.pop.model.type.Type;
 import avram.pop.utils.DictionaryInterface;
 
 public class VariableDeclareStatement implements Statement {
-    private String name;
-    private Type typ;
+    private String variableName;
+    private Type variableType;
 
     @Override
     public String toString(){
         return "VarDeclStmt{" +
-                "name='" + name + '\'' +
-                ", typ=" + typ +
+                "name='" + variableName + '\'' +
+                ", typ=" + variableType +
                 '}';
     }
 
-    public VariableDeclareStatement(String name, Type typ){
-        this.name = name;
-        this.typ = typ;
+    public VariableDeclareStatement(String variableName, Type variableType){
+        this.variableName = variableName;
+        this.variableType = variableType;
     }
 
     @Override
     public ProgramState execute(ProgramState state) throws MyException{
-        DictionaryInterface<String, Value> symTbl = state.getSymTable();
-        if(!symTbl.isDefined(name)){
-            symTbl.update(name, typ.defaultValue());
+        DictionaryInterface<String, Value> symbolTable = state.getSymbolTable();
+        if(!symbolTable.isDefined(variableName)){
+            symbolTable.update(variableName, variableType.defaultValue());
         } else {
             throw new MyException("variable is already defined");
         }

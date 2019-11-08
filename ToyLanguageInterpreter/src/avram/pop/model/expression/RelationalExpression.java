@@ -8,50 +8,50 @@ import avram.pop.utils.MyException;
 import avram.pop.utils.DictionaryInterface;
 
 public class RelationalExpression implements Expression {
-    private Expression e1;
-    private Expression e2;
-    private int op; // 1 for < 2 for <= 3 for == 4 for != 5 for > 6 for >=
+    private Expression firstOperand;
+    private Expression secondOperand;
+    private int operationCode; // 1 for < 2 for <= 3 for == 4 for != 5 for > 6 for >=
 
-    public RelationalExpression(Expression e1, Expression e2, String op){
-        this.e1 = e1;
-        this.e2 = e2;
-        if(op.equals("<")){
-            this.op = 1;
-        } else if(op.equals("<=")){
-            this.op = 2;
-        } else if(op.equals("==")){
-            this.op = 3;
-        } else if(op.equals("!=")){
-            this.op = 4;
-        } else if(op.equals(">")){
-            this.op = 5;
-        } else if(op.equals(">=")){
-            this.op = 6;
+    public RelationalExpression(Expression firstOperand, Expression secondOperand, String operationSymbol){
+        this.firstOperand = firstOperand;
+        this.secondOperand = secondOperand;
+        if(operationSymbol.equals("<")){
+            this.operationCode = 1;
+        } else if(operationSymbol.equals("<=")){
+            this.operationCode = 2;
+        } else if(operationSymbol.equals("==")){
+            this.operationCode = 3;
+        } else if(operationSymbol.equals("!=")){
+            this.operationCode = 4;
+        } else if(operationSymbol.equals(">")){
+            this.operationCode = 5;
+        } else if(operationSymbol.equals(">=")){
+            this.operationCode = 6;
         }
     }
 
     @Override
-    public Value eval(DictionaryInterface<String, Value> tbl) throws MyException{
+    public Value evaluate(DictionaryInterface<String, Value> symbolTable) throws MyException{
         Value v1, v2;
-        v1 = e1.eval(tbl);
+        v1 = firstOperand.evaluate(symbolTable);
         if(v1.getType().equals(new IntType())){
-            v2 = e2.eval(tbl);
+            v2 = secondOperand.evaluate(symbolTable);
             if(v2.getType().equals(new IntType())){
                 IntValue i1 = (IntValue) v1;
                 IntValue i2 = (IntValue) v2;
-                int int1 = i1.getVal();
-                int int2 = i2.getVal();
-                if(op == 1){
+                int int1 = i1.getValue();
+                int int2 = i2.getValue();
+                if(operationCode == 1){
                     return new BoolValue(int1 < int2);
-                } else if(op == 2){
+                } else if(operationCode == 2){
                     return new BoolValue(int1 <= int2);
-                } else if(op == 3){
+                } else if(operationCode == 3){
                     return new BoolValue(int1 == int2);
-                } else if(op == 4){
+                } else if(operationCode == 4){
                     return new BoolValue(int1 != int2);
-                } else if(op == 5){
+                } else if(operationCode == 5){
                     return new BoolValue(int1 > int2);
-                } else if(op == 6){
+                } else if(operationCode == 6){
                     return new BoolValue(int1 >= int2);
                 }
             } else throw new MyException("Operand2 is not int");
@@ -62,9 +62,9 @@ public class RelationalExpression implements Expression {
     @Override
     public String toString(){
         return "RelationalExpression{" +
-                "e1=" + e1 +
-                ", e2=" + e2 +
-                ", op=" + op +
+                "e1=" + firstOperand +
+                ", e2=" + secondOperand +
+                ", op=" + operationCode +
                 '}';
     }
 }

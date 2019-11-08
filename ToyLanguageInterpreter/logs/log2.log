@@ -1,25 +1,25 @@
 ExeStack:
-(VarDeclStmt{name='a', typ=int}; (VarDeclStmt{name='b', typ=int}; (a=ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}; (b=ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'})))))
+(VarDeclStmt{name='a', typ=int}; (VarDeclStmt{name='b', typ=int}; (a = ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}; (b = ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'})))))
 SymTable:
 Out:
 FileTable:
 
 ExeStack:
-(VarDeclStmt{name='b', typ=int}; (a=ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}; (b=ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'}))))
+(VarDeclStmt{name='b', typ=int}; (a = ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}; (b = ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'}))))
 VarDeclStmt{name='a', typ=int}
 SymTable:
 Out:
 FileTable:
 
 ExeStack:
-(VarDeclStmt{name='b', typ=int}; (a=ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}; (b=ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'}))))
+(VarDeclStmt{name='b', typ=int}; (a = ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}; (b = ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'}))))
 SymTable:
 a: (int) value is: 0
 Out:
 FileTable:
 
 ExeStack:
-(a=ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}; (b=ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'})))
+(a = ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}; (b = ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'})))
 VarDeclStmt{name='b', typ=int}
 SymTable:
 a: (int) value is: 0
@@ -27,7 +27,7 @@ Out:
 FileTable:
 
 ExeStack:
-(a=ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}; (b=ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'})))
+(a = ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}; (b = ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'})))
 SymTable:
 a: (int) value is: 0
 b: (int) value is: 0
@@ -35,8 +35,8 @@ Out:
 FileTable:
 
 ExeStack:
-(b=ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'}))
-a=ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}
+(b = ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'}))
+a = ArithExp{e1=ValueExp{e=(int) value is: 2}, e2=ArithExp{e1=ValueExp{e=(int) value is: 3}, e2=ValueExp{e=(int) value is: 5}, op=3}, op=1}
 SymTable:
 a: (int) value is: 0
 b: (int) value is: 0
@@ -44,7 +44,7 @@ Out:
 FileTable:
 
 ExeStack:
-(b=ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'}))
+(b = ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}; print(VarExp{id='b'}))
 SymTable:
 a: (int) value is: 17
 b: (int) value is: 0
@@ -53,7 +53,7 @@ FileTable:
 
 ExeStack:
 print(VarExp{id='b'})
-b=ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}
+b = ArithExp{e1=VarExp{id='a'}, e2=ValueExp{e=(int) value is: 1}, op=1}
 SymTable:
 a: (int) value is: 17
 b: (int) value is: 0

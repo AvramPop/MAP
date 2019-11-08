@@ -4,7 +4,7 @@ import avram.pop.model.control.ProgramState;
 import avram.pop.utils.MyException;
 
 public interface Repository {
-    ProgramState getCrtPrg();
+    ProgramState getCurrentProgram();
     void addState(ProgramState state);
-    void logPrgStateExec() throws MyException;
+    void logProgramState() throws MyException;
 }

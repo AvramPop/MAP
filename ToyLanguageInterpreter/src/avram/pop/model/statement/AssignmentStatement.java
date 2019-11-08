@@ -8,31 +8,31 @@ import avram.pop.model.value.Value;
 import avram.pop.model.expression.Expression;
 
 public class AssignmentStatement implements Statement {
-    private String id;
+    private String variableName;
     private Expression expression;
 
-    public AssignmentStatement(String v, Expression expression){
-        id = v;
+    public AssignmentStatement(String variableName, Expression expression){
+        this.variableName = variableName;
         this.expression = expression;
     }
 
     public String toString(){
-        return id + "=" + expression.toString();
+        return variableName + " = " + expression.toString();
     }
 
     public ProgramState execute(ProgramState state) throws MyException{
-        DictionaryInterface<String, Value> symTbl = state.getSymTable();
+        DictionaryInterface<String, Value> symbolTable = state.getSymbolTable();
 
-        if(symTbl.isDefined(id)){
-            Value val = expression.eval(symTbl);
-            Type typId = (symTbl.lookup(id)).getType();
-            if(val.getType().equals(typId)){
-                symTbl.update(id, val);
+        if(symbolTable.isDefined(variableName)){
+            Value value = expression.evaluate(symbolTable);
+            Type variableType = (symbolTable.lookup(variableName)).getType();
+            if(value.getType().equals(variableType)){
+                symbolTable.update(variableName, value);
             } else {
-                throw new MyException("declared type of variable" + id + " and type of the assigned expression do not match ");
+                throw new MyException("declared type of variable" + variableName + " and type of the assigned expression do not match ");
             }
         } else {
-            throw new MyException("the used variable" + id + " was not declared before");
+            throw new MyException("the used variable" + variableName + " was not declared before");
         }
         return state;
     }

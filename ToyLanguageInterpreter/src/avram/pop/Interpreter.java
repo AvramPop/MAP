@@ -25,9 +25,9 @@ import java.io.BufferedReader;
 public class Interpreter {
 
     public static void main(String[] args){
-        Statement program1 = new CompareStatement(
+        Statement program1 = new CompoundStatement(
                 new VariableDeclareStatement("v", new IntType()),
-                new CompareStatement(
+                new CompoundStatement(
                         new AssignmentStatement("v", new ValueExpression(new IntValue(2))),
                         new PrintStatement(new VariableExpression("v"))));
         DictionaryInterface<String, Value> symbolTable1 = new MyDictionary<>();
@@ -44,11 +44,11 @@ public class Interpreter {
         repository1.addState(programState1);
         Controller controller1 = new Controller(repository1);
 
-        Statement program2 = new CompareStatement(new VariableDeclareStatement("a", new IntType()),
-                new CompareStatement(new VariableDeclareStatement("b", new IntType()),
-                        new CompareStatement(new AssignmentStatement("a", new ArithmeticExpression('+', new ValueExpression(new IntValue(2)), new
+        Statement program2 = new CompoundStatement(new VariableDeclareStatement("a", new IntType()),
+                new CompoundStatement(new VariableDeclareStatement("b", new IntType()),
+                        new CompoundStatement(new AssignmentStatement("a", new ArithmeticExpression('+', new ValueExpression(new IntValue(2)), new
                                 ArithmeticExpression('*', new ValueExpression(new IntValue(3)), new ValueExpression(new IntValue(5))))),
-                                new CompareStatement(new AssignmentStatement("b", new ArithmeticExpression('+', new VariableExpression("a"), new
+                                new CompoundStatement(new AssignmentStatement("b", new ArithmeticExpression('+', new VariableExpression("a"), new
                                         ValueExpression(new IntValue(1)))), new PrintStatement(new VariableExpression("b"))))));
         DictionaryInterface<String, Value> symbolTable2 = new MyDictionary<>();
         DictionaryInterface<StringValue, BufferedReader> fileTable2 = new MyDictionary<>();
@@ -64,10 +64,10 @@ public class Interpreter {
         repository2.addState(programState2);
         Controller controller2 = new Controller(repository2);
 
-        Statement program3 = new CompareStatement(new VariableDeclareStatement("a", new BoolType()),
-                new CompareStatement(new VariableDeclareStatement("v", new IntType()),
-                        new CompareStatement(new AssignmentStatement("a", new ValueExpression(new BoolValue(true))),
-                                new CompareStatement(new IfStatement(new VariableExpression("a"), new AssignmentStatement("v", new ValueExpression(new
+        Statement program3 = new CompoundStatement(new VariableDeclareStatement("a", new BoolType()),
+                new CompoundStatement(new VariableDeclareStatement("v", new IntType()),
+                        new CompoundStatement(new AssignmentStatement("a", new ValueExpression(new BoolValue(true))),
+                                new CompoundStatement(new IfStatement(new VariableExpression("a"), new AssignmentStatement("v", new ValueExpression(new
                                         IntValue(2))), new AssignmentStatement("v", new ValueExpression(new IntValue(3)))), new PrintStatement(new
                                         VariableExpression("v"))))));
         DictionaryInterface<String, Value> symbolTable3 = new MyDictionary<>();
@@ -84,14 +84,14 @@ public class Interpreter {
         repository3.addState(programState3);
         Controller controller3 = new Controller(repository3);
 
-        Statement program4 = new CompareStatement(new VariableDeclareStatement("varf", new StringType()),
-                new CompareStatement(new AssignmentStatement("varf", new ValueExpression(new StringValue("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in"))),
-                new CompareStatement(new OpenReadFileStatement(new VariableExpression("varf")),
-                new CompareStatement(new VariableDeclareStatement("varc", new IntType()),
-                new CompareStatement(new ReadFileStatement(new VariableExpression("varf"), "varc"),
-                new CompareStatement(new PrintStatement(new VariableExpression("varc")),
-                new CompareStatement(new ReadFileStatement(new VariableExpression("varf"), "varc"),
-                new CompareStatement(new PrintStatement(new VariableExpression("varc")), new CloseReadFileStatement(new VariableExpression("varf"))))))))));
+        Statement program4 = new CompoundStatement(new VariableDeclareStatement("varf", new StringType()),
+                new CompoundStatement(new AssignmentStatement("varf", new ValueExpression(new StringValue("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in"))),
+                new CompoundStatement(new OpenReadFileStatement(new VariableExpression("varf")),
+                new CompoundStatement(new VariableDeclareStatement("varc", new IntType()),
+                new CompoundStatement(new ReadFileStatement(new VariableExpression("varf"), "varc"),
+                new CompoundStatement(new PrintStatement(new VariableExpression("varc")),
+                new CompoundStatement(new ReadFileStatement(new VariableExpression("varf"), "varc"),
+                new CompoundStatement(new PrintStatement(new VariableExpression("varc")), new CloseReadFileStatement(new VariableExpression("varf"))))))))));
         DictionaryInterface<String, Value> symbolTable4 = new MyDictionary<>();
         DictionaryInterface<StringValue, BufferedReader> fileTable4 = new MyDictionary<>();
         ListInterface<Value> out4 = new MyList<>();

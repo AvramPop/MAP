@@ -5,21 +5,21 @@ import avram.pop.utils.DictionaryInterface;
 import avram.pop.model.value.Value;
 
 public class ValueExpression implements Expression {
-    private Value e;
+    private Value value;
 
     @Override
     public String toString(){
         return "ValueExp{" +
-                "e=" + e +
+                "e=" + value +
                 '}';
     }
 
     public ValueExpression(Value value){
-        e = value;
+        this.value = value;
     }
 
     @Override
-    public Value eval(DictionaryInterface<String, Value> tbl) throws MyException{
-        return e;
+    public Value evaluate(DictionaryInterface<String, Value> symbolTable) throws MyException{
+        return value;
     }
 }

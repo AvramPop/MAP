@@ -1,25 +1,25 @@
 ExeStack:
-(VarDeclStmt{name='a', typ=bool}; (VarDeclStmt{name='v', typ=int}; (a=ValueExp{e=(bool) value is: true}; ((IF(VarExp{id='a'}) THEN(v=ValueExp{e=(int) value is: 2})ELSE(v=ValueExp{e=(int) value is: 3})); print(VarExp{id='v'})))))
+(VarDeclStmt{name='a', typ=bool}; (VarDeclStmt{name='v', typ=int}; (a = ValueExp{e=(bool) value is: true}; ((IF(VarExp{id='a'}) THEN(v = ValueExp{e=(int) value is: 2})ELSE(v = ValueExp{e=(int) value is: 3})); print(VarExp{id='v'})))))
 SymTable:
 Out:
 FileTable:
 
 ExeStack:
-(VarDeclStmt{name='v', typ=int}; (a=ValueExp{e=(bool) value is: true}; ((IF(VarExp{id='a'}) THEN(v=ValueExp{e=(int) value is: 2})ELSE(v=ValueExp{e=(int) value is: 3})); print(VarExp{id='v'}))))
+(VarDeclStmt{name='v', typ=int}; (a = ValueExp{e=(bool) value is: true}; ((IF(VarExp{id='a'}) THEN(v = ValueExp{e=(int) value is: 2})ELSE(v = ValueExp{e=(int) value is: 3})); print(VarExp{id='v'}))))
 VarDeclStmt{name='a', typ=bool}
 SymTable:
 Out:
 FileTable:
 
 ExeStack:
-(VarDeclStmt{name='v', typ=int}; (a=ValueExp{e=(bool) value is: true}; ((IF(VarExp{id='a'}) THEN(v=ValueExp{e=(int) value is: 2})ELSE(v=ValueExp{e=(int) value is: 3})); print(VarExp{id='v'}))))
+(VarDeclStmt{name='v', typ=int}; (a = ValueExp{e=(bool) value is: true}; ((IF(VarExp{id='a'}) THEN(v = ValueExp{e=(int) value is: 2})ELSE(v = ValueExp{e=(int) value is: 3})); print(VarExp{id='v'}))))
 SymTable:
 a: (bool) value is: false
 Out:
 FileTable:
 
 ExeStack:
-(a=ValueExp{e=(bool) value is: true}; ((IF(VarExp{id='a'}) THEN(v=ValueExp{e=(int) value is: 2})ELSE(v=ValueExp{e=(int) value is: 3})); print(VarExp{id='v'})))
+(a = ValueExp{e=(bool) value is: true}; ((IF(VarExp{id='a'}) THEN(v = ValueExp{e=(int) value is: 2})ELSE(v = ValueExp{e=(int) value is: 3})); print(VarExp{id='v'})))
 VarDeclStmt{name='v', typ=int}
 SymTable:
 a: (bool) value is: false
@@ -27,7 +27,7 @@ Out:
 FileTable:
 
 ExeStack:
-(a=ValueExp{e=(bool) value is: true}; ((IF(VarExp{id='a'}) THEN(v=ValueExp{e=(int) value is: 2})ELSE(v=ValueExp{e=(int) value is: 3})); print(VarExp{id='v'})))
+(a = ValueExp{e=(bool) value is: true}; ((IF(VarExp{id='a'}) THEN(v = ValueExp{e=(int) value is: 2})ELSE(v = ValueExp{e=(int) value is: 3})); print(VarExp{id='v'})))
 SymTable:
 a: (bool) value is: false
 v: (int) value is: 0
@@ -35,8 +35,8 @@ Out:
 FileTable:
 
 ExeStack:
-((IF(VarExp{id='a'}) THEN(v=ValueExp{e=(int) value is: 2})ELSE(v=ValueExp{e=(int) value is: 3})); print(VarExp{id='v'}))
-a=ValueExp{e=(bool) value is: true}
+((IF(VarExp{id='a'}) THEN(v = ValueExp{e=(int) value is: 2})ELSE(v = ValueExp{e=(int) value is: 3})); print(VarExp{id='v'}))
+a = ValueExp{e=(bool) value is: true}
 SymTable:
 a: (bool) value is: false
 v: (int) value is: 0
@@ -44,7 +44,7 @@ Out:
 FileTable:
 
 ExeStack:
-((IF(VarExp{id='a'}) THEN(v=ValueExp{e=(int) value is: 2})ELSE(v=ValueExp{e=(int) value is: 3})); print(VarExp{id='v'}))
+((IF(VarExp{id='a'}) THEN(v = ValueExp{e=(int) value is: 2})ELSE(v = ValueExp{e=(int) value is: 3})); print(VarExp{id='v'}))
 SymTable:
 a: (bool) value is: true
 v: (int) value is: 0
@@ -53,7 +53,7 @@ FileTable:
 
 ExeStack:
 print(VarExp{id='v'})
-(IF(VarExp{id='a'}) THEN(v=ValueExp{e=(int) value is: 2})ELSE(v=ValueExp{e=(int) value is: 3}))
+(IF(VarExp{id='a'}) THEN(v = ValueExp{e=(int) value is: 2})ELSE(v = ValueExp{e=(int) value is: 3}))
 SymTable:
 a: (bool) value is: true
 v: (int) value is: 0
@@ -62,7 +62,7 @@ FileTable:
 
 ExeStack:
 print(VarExp{id='v'})
-v=ValueExp{e=(int) value is: 2}
+v = ValueExp{e=(int) value is: 2}
 SymTable:
 a: (bool) value is: true
 v: (int) value is: 0

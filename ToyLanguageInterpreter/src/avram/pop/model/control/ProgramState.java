@@ -10,10 +10,10 @@ import avram.pop.utils.StackInterface;
 import java.io.BufferedReader;
 
 public class ProgramState {
-    private StackInterface<Statement> exeStack;
-    private DictionaryInterface<String, Value> symTable;
+    private StackInterface<Statement> executionStack;
+    private DictionaryInterface<String, Value> symbolTable;
     private DictionaryInterface<StringValue, BufferedReader> fileTable;
-    private ListInterface<Value> out;
+    private ListInterface<Value> outputBuffer;
     private Statement originalProgram; //optional field, but good to have
 
     public DictionaryInterface<StringValue, BufferedReader> getFileTable(){
@@ -24,60 +24,60 @@ public class ProgramState {
         this.fileTable = fileTable;
     }
 
-    public ProgramState(StackInterface<Statement> stk, DictionaryInterface<String, Value> symtbl, ListInterface<Value> ot, DictionaryInterface<StringValue, BufferedReader> fileTable, Statement prg){
-        exeStack = stk;
-        symTable = symtbl;
-        out = ot;
+    public ProgramState(StackInterface<Statement> executionStack, DictionaryInterface<String, Value> symbolTable, ListInterface<Value> outputBuffer, DictionaryInterface<StringValue, BufferedReader> fileTable, Statement program){
+        this.executionStack = executionStack;
+        this.symbolTable = symbolTable;
+        this.outputBuffer = outputBuffer;
         this.fileTable = fileTable;
-        originalProgram = deepCopy(prg);//recreate the entire original prg
-        stk.push(prg);
+        originalProgram = deepCopy(program);//recreate the entire original prg
+        executionStack.push(program);
     }
 
-    private Statement deepCopy(Statement prg){
-        return prg;
+    private Statement deepCopy(Statement program){
+        return program;
     }
 
-    public StackInterface<Statement> getStk(){
-        return exeStack;
+    public StackInterface<Statement> getExecutionStack(){
+        return executionStack;
     }
 
-    public DictionaryInterface<String, Value> getSymTable(){
-        return symTable;
+    public DictionaryInterface<String, Value> getSymbolTable(){
+        return symbolTable;
     }
 
-    public ListInterface<Value> getOut(){
-        return out;
+    public ListInterface<Value> getOutputBuffer(){
+        return outputBuffer;
     }
 
-    public void setExeStack(StackInterface<Statement> exeStack){
-        this.exeStack = exeStack;
+    public void setExecutionStack(StackInterface<Statement> executionStack){
+        this.executionStack = executionStack;
     }
 
-    public void setSymTable(DictionaryInterface<String, Value> symTable){
-        this.symTable = symTable;
+    public void setSymbolTable(DictionaryInterface<String, Value> symbolTable){
+        this.symbolTable = symbolTable;
     }
 
-    public void setOut(ListInterface<Value> out){
-        this.out = out;
+    public void setOutputBuffer(ListInterface<Value> outputBuffer){
+        this.outputBuffer = outputBuffer;
     }
 
     @Override
     public String toString(){
         return "PrgState{" +
-                "\nexeStack\n" + exeStack.toString() +
-                "symTable\n" + symTable.toString() +
+                "\nexeStack\n" + executionStack.toString() +
+                "symTable\n" + symbolTable.toString() +
                 "fileTable\n" + fileTable.toString() +
-                "out\n" + out.toString() +
+                "out\n" + outputBuffer.toString() +
                 "\n}\n";
     }
 
     public String toLogString(){
         return "ExeStack:\n" +
-                exeStack.toLogString() +
+                executionStack.toLogString() +
                 "SymTable:\n" +
-                symTable.toLogString() +
+                symbolTable.toLogString() +
                 "Out:\n" +
-                out.toLogString() +
+                outputBuffer.toLogString() +
                 "FileTable:\n" +
                 fileTable.toLogString() + "\n";
     }

@@ -14,22 +14,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class ReadFileStatement implements Statement {
-    private Expression exp;
-    private String varName;
+    private Expression expression;
+    private String variableName;
 
-    public ReadFileStatement(Expression exp, String varName){
-        this.exp = exp;
-        this.varName = varName;
+    public ReadFileStatement(Expression expression, String variableName){
+        this.expression = expression;
+        this.variableName = variableName;
     }
 
     @Override
     public ProgramState execute(ProgramState state) throws MyException{
-        DictionaryInterface<String, Value> symbolTable = state.getSymTable();
+        DictionaryInterface<String, Value> symbolTable = state.getSymbolTable();
         DictionaryInterface<StringValue, BufferedReader> fileTable = state.getFileTable();
-        if(symbolTable.isDefined(varName)){
-            Value variableValue = symbolTable.lookup(varName);
+        if(symbolTable.isDefined(variableName)){
+            Value variableValue = symbolTable.lookup(variableName);
             if(variableValue.getType().equals(new IntType())){
-                Value expressionValue = exp.eval(symbolTable);
+                Value expressionValue = expression.evaluate(symbolTable);
                 if(expressionValue.getType().equals(new StringType())){
                     StringValue expressionValueAsStringValue = (StringValue) expressionValue;
                     if(fileTable.isDefined(expressionValueAsStringValue)){
@@ -42,7 +42,7 @@ public class ReadFileStatement implements Statement {
                             } else {
                                 value = 0;
                             }
-                            symbolTable.update(varName, new IntValue(value));
+                            symbolTable.update(variableName, new IntValue(value));
                         } catch(IOException e){
                             throw new MyException("IO error");
                         }
@@ -64,8 +64,8 @@ public class ReadFileStatement implements Statement {
     @Override
     public String toString(){
         return "ReadFileStmt{" +
-                "exp=" + exp +
-                ", varName='" + varName + '\'' +
+                "exp=" + expression +
+                ", varName='" + variableName + '\'' +
                 '}';
     }
 }

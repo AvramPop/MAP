@@ -4,17 +4,17 @@ import avram.pop.controller.Controller;
 import avram.pop.utils.MyException;
 
 public class RunExample extends Command {
-    private Controller ctr;
+    private Controller controller;
 
-    public RunExample(String key, String desc, Controller ctr){
-        super(key, desc);
-        this.ctr = ctr;
+    public RunExample(String key, String description, Controller controller){
+        super(key, description);
+        this.controller = controller;
     }
 
     @Override
     public void execute(){
         try{
-            ctr.allStep();
+            controller.allStep();
         } catch(MyException e){
             System.err.println(e.getMessage());
         }

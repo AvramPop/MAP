@@ -38,21 +38,21 @@ public class ListRepository implements Repository {
     }
 
     @Override
-    public void logPrgStateExec() throws MyException{
+    public void logProgramState() throws MyException{
         PrintWriter logFile;
         try{
             logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath.toFile(), true)));
         } catch(IOException e){
             throw new MyException("files error");
         }
-        String log = getCrtPrg().toLogString();
+        String log = getCurrentProgram().toLogString();
 
         logFile.print(log);
         logFile.close();
     }
 
     @Override
-    public ProgramState getCrtPrg(){
+    public ProgramState getCurrentProgram(){
         return states.get(0);
     }
 }

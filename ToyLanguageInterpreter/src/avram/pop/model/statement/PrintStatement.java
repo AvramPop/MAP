@@ -18,8 +18,8 @@ public class PrintStatement implements Statement {
     }
 
     public ProgramState execute(ProgramState state) throws MyException{
-        ListInterface<Value> out = state.getOut();
-        out.add(expression.eval(state.getSymTable()));
+        ListInterface<Value> outputBuffer = state.getOutputBuffer();
+        outputBuffer.add(expression.evaluate(state.getSymbolTable()));
         return state;
     }
 }

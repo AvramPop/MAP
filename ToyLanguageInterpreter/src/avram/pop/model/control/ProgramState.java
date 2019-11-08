@@ -1,30 +1,30 @@
 package avram.pop.model.control;
 
-import avram.pop.model.statement.IStmt;
+import avram.pop.model.statement.Statement;
 import avram.pop.model.value.StringValue;
-import avram.pop.model.value.IValue;
-import avram.pop.utils.MyIDictionary;
-import avram.pop.utils.MyIList;
-import avram.pop.utils.MyIStack;
+import avram.pop.model.value.Value;
+import avram.pop.utils.DictionaryInterface;
+import avram.pop.utils.ListInterface;
+import avram.pop.utils.StackInterface;
 
 import java.io.BufferedReader;
 
 public class ProgramState {
-    private MyIStack<IStmt> exeStack;
-    private MyIDictionary<String, IValue> symTable;
-    private MyIDictionary<StringValue, BufferedReader> fileTable;
-    private MyIList<IValue> out;
-    private IStmt originalProgram; //optional field, but good to have
+    private StackInterface<Statement> exeStack;
+    private DictionaryInterface<String, Value> symTable;
+    private DictionaryInterface<StringValue, BufferedReader> fileTable;
+    private ListInterface<Value> out;
+    private Statement originalProgram; //optional field, but good to have
 
-    public MyIDictionary<StringValue, BufferedReader> getFileTable(){
+    public DictionaryInterface<StringValue, BufferedReader> getFileTable(){
         return fileTable;
     }
 
-    public void setFileTable(MyIDictionary<StringValue, BufferedReader> fileTable){
+    public void setFileTable(DictionaryInterface<StringValue, BufferedReader> fileTable){
         this.fileTable = fileTable;
     }
 
-    public ProgramState(MyIStack<IStmt> stk, MyIDictionary<String, IValue> symtbl, MyIList<IValue> ot, MyIDictionary<StringValue, BufferedReader> fileTable, IStmt prg){
+    public ProgramState(StackInterface<Statement> stk, DictionaryInterface<String, Value> symtbl, ListInterface<Value> ot, DictionaryInterface<StringValue, BufferedReader> fileTable, Statement prg){
         exeStack = stk;
         symTable = symtbl;
         out = ot;
@@ -33,31 +33,31 @@ public class ProgramState {
         stk.push(prg);
     }
 
-    private IStmt deepCopy(IStmt prg){
+    private Statement deepCopy(Statement prg){
         return prg;
     }
 
-    public MyIStack<IStmt> getStk(){
+    public StackInterface<Statement> getStk(){
         return exeStack;
     }
 
-    public MyIDictionary<String, IValue> getSymTable(){
+    public DictionaryInterface<String, Value> getSymTable(){
         return symTable;
     }
 
-    public MyIList<IValue> getOut(){
+    public ListInterface<Value> getOut(){
         return out;
     }
 
-    public void setExeStack(MyIStack<IStmt> exeStack){
+    public void setExeStack(StackInterface<Statement> exeStack){
         this.exeStack = exeStack;
     }
 
-    public void setSymTable(MyIDictionary<String, IValue> symTable){
+    public void setSymTable(DictionaryInterface<String, Value> symTable){
         this.symTable = symTable;
     }
 
-    public void setOut(MyIList<IValue> out){
+    public void setOut(ListInterface<Value> out){
         this.out = out;
     }
 

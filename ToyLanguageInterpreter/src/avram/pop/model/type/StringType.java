@@ -1,9 +1,9 @@
 package avram.pop.model.type;
 
 import avram.pop.model.value.StringValue;
-import avram.pop.model.value.IValue;
+import avram.pop.model.value.Value;
 
-public class StringType implements IType {
+public class StringType implements Type {
     public boolean equals(Object another){
         return another instanceof StringType;
     }
@@ -13,7 +13,7 @@ public class StringType implements IType {
     }
 
     @Override
-    public IValue defaultValue(){
+    public Value defaultValue(){
         return new StringValue("");
     }
 }

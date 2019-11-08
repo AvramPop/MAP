@@ -2,10 +2,10 @@ package avram.pop.model.expression;
 
 import avram.pop.model.type.IntType;
 import avram.pop.model.value.BoolValue;
-import avram.pop.model.value.IValue;
+import avram.pop.model.value.Value;
 import avram.pop.model.value.IntValue;
 import avram.pop.utils.MyException;
-import avram.pop.utils.MyIDictionary;
+import avram.pop.utils.DictionaryInterface;
 
 public class RelationalExpression implements Expression {
     private Expression e1;
@@ -31,8 +31,8 @@ public class RelationalExpression implements Expression {
     }
 
     @Override
-    public IValue eval(MyIDictionary<String, IValue> tbl) throws MyException{
-        IValue v1, v2;
+    public Value eval(DictionaryInterface<String, Value> tbl) throws MyException{
+        Value v1, v2;
         v1 = e1.eval(tbl);
         if(v1.getType().equals(new IntType())){
             v2 = e2.eval(tbl);

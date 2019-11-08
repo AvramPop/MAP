@@ -1,22 +1,22 @@
 package avram.pop.controller;
 
-import avram.pop.repository.MyIRepository;
+import avram.pop.repository.Repository;
 import avram.pop.utils.MyException;
-import avram.pop.model.statement.IStmt;
-import avram.pop.utils.MyIStack;
+import avram.pop.model.statement.Statement;
+import avram.pop.utils.StackInterface;
 import avram.pop.model.control.ProgramState;
 
 public class Controller {
-    private MyIRepository repo;
+    private Repository repo;
 
-    public Controller(MyIRepository repo){
+    public Controller(Repository repo){
         this.repo = repo;
     }
 
     public ProgramState oneStep(ProgramState state) throws MyException{
-        MyIStack<IStmt> stk = state.getStk();
+        StackInterface<Statement> stk = state.getStk();
         if(stk.isEmpty()) throw new MyException("program stack is empty");
-        IStmt crtStmt = stk.pop();
+        Statement crtStmt = stk.pop();
         return crtStmt.execute(state);
     }
 

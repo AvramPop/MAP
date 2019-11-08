@@ -1,11 +1,11 @@
 package avram.pop.model.value;
 
 import avram.pop.model.type.IntType;
-import avram.pop.model.type.IType;
+import avram.pop.model.type.Type;
 
 import java.util.Objects;
 
-public class IntValue implements IValue {
+public class IntValue implements Value {
     private int val;
 
     public IntValue(int v){
@@ -33,7 +33,7 @@ public class IntValue implements IValue {
         return Objects.hash(val);
     }
 
-    public IType getType(){
+    public Type getType(){
         return new IntType();
     }
 }

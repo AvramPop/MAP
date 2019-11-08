@@ -3,7 +3,7 @@ package avram.pop.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyList<T> implements MyIList<T> {
+public class MyList<T> implements ListInterface<T> {
     private List<T> list;
 
     public MyList(){

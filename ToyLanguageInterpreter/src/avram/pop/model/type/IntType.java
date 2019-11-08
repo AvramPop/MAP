@@ -1,9 +1,9 @@
 package avram.pop.model.type;
 
 import avram.pop.model.value.IntValue;
-import avram.pop.model.value.IValue;
+import avram.pop.model.value.Value;
 
-public class IntType implements IType {
+public class IntType implements Type {
     public boolean equals(Object another){
         return another instanceof IntType;
     }
@@ -13,7 +13,7 @@ public class IntType implements IType {
     }
 
     @Override
-    public IValue defaultValue(){
+    public Value defaultValue(){
         return new IntValue(0);
     }
 }

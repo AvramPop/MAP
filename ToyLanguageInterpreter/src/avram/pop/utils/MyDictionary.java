@@ -1,11 +1,9 @@
 package avram.pop.utils;
 
-import javafx.util.Pair;
-
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyDictionary<K, V> implements MyIDictionary<K, V> {
+public class MyDictionary<K, V> implements DictionaryInterface<K, V> {
     private Map<K, V> map;
 
     public MyDictionary(){

@@ -2,7 +2,7 @@ package avram.pop.utils;
 
 import java.util.Stack;
 
-public class MyStack<T> implements MyIStack<T> {
+public class MyStack<T> implements StackInterface<T> {
     private Stack<T> stack;
 
     public MyStack(){

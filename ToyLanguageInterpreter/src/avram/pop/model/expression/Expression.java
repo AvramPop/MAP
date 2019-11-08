@@ -1,9 +1,9 @@
 package avram.pop.model.expression;
 
 import avram.pop.utils.MyException;
-import avram.pop.utils.MyIDictionary;
-import avram.pop.model.value.IValue;
+import avram.pop.utils.DictionaryInterface;
+import avram.pop.model.value.Value;
 
 public interface Expression {
-    IValue eval(MyIDictionary<String, IValue> tbl) throws MyException;
+    Value eval(DictionaryInterface<String, Value> tbl) throws MyException;
 }

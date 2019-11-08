@@ -1,11 +1,11 @@
 package avram.pop.model.value;
 
 import avram.pop.model.type.StringType;
-import avram.pop.model.type.IType;
+import avram.pop.model.type.Type;
 
 import java.util.Objects;
 
-public class StringValue implements IValue {
+public class StringValue implements Value {
     private String val;
 
     @Override
@@ -33,7 +33,7 @@ public class StringValue implements IValue {
         return "(string) value is: " + val;
     }
 
-    public IType getType(){
+    public Type getType(){
         return new StringType();
     }
 }

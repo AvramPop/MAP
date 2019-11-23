@@ -1,10 +1,11 @@
 package avram.pop.model.expression;
 
-import avram.pop.utils.MyException;
-import avram.pop.utils.DictionaryInterface;
 import avram.pop.model.type.IntType;
 import avram.pop.model.value.IntValue;
 import avram.pop.model.value.Value;
+import avram.pop.utils.DictionaryInterface;
+import avram.pop.utils.HeapInterface;
+import avram.pop.utils.MyException;
 
 public class ArithmeticExpression implements Expression {
     private Expression firstOperand;
@@ -34,11 +35,11 @@ public class ArithmeticExpression implements Expression {
                 '}';
     }
 
-    public Value evaluate(DictionaryInterface<String, Value> symbolTable) throws MyException{
+    public Value evaluate(DictionaryInterface<String, Value> symbolTable, HeapInterface<Integer, Value> heap) throws MyException{
         Value v1, v2;
-        v1 = firstOperand.evaluate(symbolTable);
+        v1 = firstOperand.evaluate(symbolTable, heap);
         if(v1.getType().equals(new IntType())){
-            v2 = secondOperand.evaluate(symbolTable);
+            v2 = secondOperand.evaluate(symbolTable, heap);
             if(v2.getType().equals(new IntType())){
                 IntValue i1 = (IntValue) v1;
                 IntValue i2 = (IntValue) v2;

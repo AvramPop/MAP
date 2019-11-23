@@ -32,9 +32,10 @@ public class Interpreter {
                         new PrintStatement(new VariableExpression("v"))));
         DictionaryInterface<String, Value> symbolTable1 = new MyDictionary<>();
         DictionaryInterface<StringValue, BufferedReader> fileTable1 = new MyDictionary<>();
+        HeapInterface<Integer, Value> heap1 = new Heap<>();
         ListInterface<Value> out1 = new MyList<>();
         StackInterface<Statement> executionStack1 = new MyStack<>();
-        ProgramState programState1 = new ProgramState(executionStack1, symbolTable1, out1, fileTable1, program1);
+        ProgramState programState1 = new ProgramState(executionStack1, symbolTable1, out1, fileTable1, program1, heap1);
         Repository repository1 = null;
         try{
             repository1 = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/log1.log");
@@ -53,8 +54,9 @@ public class Interpreter {
         DictionaryInterface<String, Value> symbolTable2 = new MyDictionary<>();
         DictionaryInterface<StringValue, BufferedReader> fileTable2 = new MyDictionary<>();
         ListInterface<Value> out2 = new MyList<>();
+        HeapInterface<Integer, Value> heap2 = new Heap<>();
         StackInterface<Statement> executionStack2 = new MyStack<>();
-        ProgramState programState2 = new ProgramState(executionStack2, symbolTable2, out2, fileTable2, program2);
+        ProgramState programState2 = new ProgramState(executionStack2, symbolTable2, out2, fileTable2, program2, heap2);
         Repository repository2 = null;
         try{
             repository2 = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/log2.log");
@@ -73,8 +75,9 @@ public class Interpreter {
         DictionaryInterface<String, Value> symbolTable3 = new MyDictionary<>();
         DictionaryInterface<StringValue, BufferedReader> fileTable3 = new MyDictionary<>();
         ListInterface<Value> out3 = new MyList<>();
+        HeapInterface<Integer, Value> heap3 = new Heap<>();
         StackInterface<Statement> executionStack3 = new MyStack<>();
-        ProgramState programState3 = new ProgramState(executionStack3, symbolTable3, out3, fileTable3, program3);
+        ProgramState programState3 = new ProgramState(executionStack3, symbolTable3, out3, fileTable3, program3, heap3);
         Repository repository3 = null;
         try{
             repository3 = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/log3.log");
@@ -96,7 +99,8 @@ public class Interpreter {
         DictionaryInterface<StringValue, BufferedReader> fileTable4 = new MyDictionary<>();
         ListInterface<Value> out4 = new MyList<>();
         StackInterface<Statement> executionStack4 = new MyStack<>();
-        ProgramState programState4 = new ProgramState(executionStack4, symbolTable4, out4, fileTable4, program4);
+        HeapInterface<Integer, Value> heap4 = new Heap<>();
+        ProgramState programState4 = new ProgramState(executionStack4, symbolTable4, out4, fileTable4, program4, heap4);
         Repository repository4 = null;
         try{
             repository4 = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/log4.log");

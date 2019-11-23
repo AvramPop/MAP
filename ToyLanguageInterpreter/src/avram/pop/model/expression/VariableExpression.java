@@ -1,8 +1,9 @@
 package avram.pop.model.expression;
 
-import avram.pop.utils.MyException;
-import avram.pop.utils.DictionaryInterface;
 import avram.pop.model.value.Value;
+import avram.pop.utils.DictionaryInterface;
+import avram.pop.utils.HeapInterface;
+import avram.pop.utils.MyException;
 
 public class VariableExpression implements Expression {
     private String variableName;
@@ -18,7 +19,7 @@ public class VariableExpression implements Expression {
         this.variableName = variableName;
     }
 
-    public Value evaluate(DictionaryInterface<String, Value> symbolTable) throws MyException{
+    public Value evaluate(DictionaryInterface<String, Value> symbolTable, HeapInterface<Integer, Value> heap) throws MyException{
         if(symbolTable.isDefined(variableName)) return symbolTable.lookup(variableName);
         else throw new MyException("variable " + variableName + " is not defined");
     }

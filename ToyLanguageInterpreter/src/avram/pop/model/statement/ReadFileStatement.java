@@ -29,7 +29,7 @@ public class ReadFileStatement implements Statement {
         if(symbolTable.isDefined(variableName)){
             Value variableValue = symbolTable.lookup(variableName);
             if(variableValue.getType().equals(new IntType())){
-                Value expressionValue = expression.evaluate(symbolTable);
+                Value expressionValue = expression.evaluate(symbolTable, state.getHeap());
                 if(expressionValue.getType().equals(new StringType())){
                     StringValue expressionValueAsStringValue = (StringValue) expressionValue;
                     if(fileTable.isDefined(expressionValueAsStringValue)){

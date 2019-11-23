@@ -1,5 +1,7 @@
 package avram.pop.utils;
 
+import java.util.Map;
+
 public interface DictionaryInterface<K, V> {
     boolean isDefined(K id);
 
@@ -10,4 +12,6 @@ public interface DictionaryInterface<K, V> {
     String toLogString();
 
     void removeEntry(K id);
+
+    Map<K, V> getContent();
 }

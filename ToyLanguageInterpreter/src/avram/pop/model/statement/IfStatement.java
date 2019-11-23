@@ -24,7 +24,7 @@ public class IfStatement implements Statement {
     }
 
     public ProgramState execute(ProgramState state) throws MyException{
-        Value condition = expression.evaluate(state.getSymbolTable());
+        Value condition = expression.evaluate(state.getSymbolTable(), state.getHeap());
         if(condition.getType().equals(new BoolType())){
             BoolValue booleanCondition = (BoolValue) condition;
             if(booleanCondition.getValue()){

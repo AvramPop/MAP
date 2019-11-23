@@ -52,4 +52,9 @@ public class MyDictionary<K, V> implements DictionaryInterface<K, V> {
     public void removeEntry(K id){
         map.remove(id);
     }
+
+    @Override
+    public Map<K, V> getContent(){
+        return map;
+    }
 }

@@ -22,8 +22,8 @@ public class CloseReadFileStatement implements Statement {
     public ProgramState execute(ProgramState state) throws MyException{
         DictionaryInterface<String, Value> symbolTable = state.getSymbolTable();
         DictionaryInterface<StringValue, BufferedReader> fileTable = state.getFileTable();
-        if(expression.evaluate(symbolTable).getType().equals(new StringType())){
-            Value value = expression.evaluate(symbolTable);
+        if(expression.evaluate(symbolTable, state.getHeap()).getType().equals(new StringType())){
+            Value value = expression.evaluate(symbolTable, state.getHeap());
             StringValue expAsStringValue = (StringValue) value;
             if(fileTable.isDefined(expAsStringValue)){
                 BufferedReader bufferedReader = fileTable.lookup(expAsStringValue);

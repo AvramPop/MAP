@@ -47,7 +47,7 @@ SymTable:
 varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in
 Out:
 FileTable:
-(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@2503dbd3
+(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@1ed4004b
 
 ExeStack:
 (ReadFileStmt{exp=VarExp{id='varf'}, varName='varc'}; (print(VarExp{id='varc'}); (ReadFileStmt{exp=VarExp{id='varf'}, varName='varc'}; (print(VarExp{id='varc'}); CloseRFileStmt{exp=VarExp{id='varf'}}))))
@@ -56,7 +56,7 @@ SymTable:
 varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in
 Out:
 FileTable:
-(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@2503dbd3
+(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@1ed4004b
 
 ExeStack:
 (ReadFileStmt{exp=VarExp{id='varf'}, varName='varc'}; (print(VarExp{id='varc'}); (ReadFileStmt{exp=VarExp{id='varf'}, varName='varc'}; (print(VarExp{id='varc'}); CloseRFileStmt{exp=VarExp{id='varf'}}))))
@@ -65,7 +65,7 @@ varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguag
 varc: (int) value is: 0
 Out:
 FileTable:
-(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@2503dbd3
+(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@1ed4004b
 
 ExeStack:
 (print(VarExp{id='varc'}); (ReadFileStmt{exp=VarExp{id='varf'}, varName='varc'}; (print(VarExp{id='varc'}); CloseRFileStmt{exp=VarExp{id='varf'}})))
@@ -75,86 +75,86 @@ varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguag
 varc: (int) value is: 0
 Out:
 FileTable:
-(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@2503dbd3
+(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@1ed4004b
 
 ExeStack:
 (print(VarExp{id='varc'}); (ReadFileStmt{exp=VarExp{id='varf'}, varName='varc'}; (print(VarExp{id='varc'}); CloseRFileStmt{exp=VarExp{id='varf'}})))
 SymTable:
 varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in
-varc: (int) value is: 5
+varc: (int) value is: 3
 Out:
 FileTable:
-(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@2503dbd3
+(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@1ed4004b
 
 ExeStack:
 (ReadFileStmt{exp=VarExp{id='varf'}, varName='varc'}; (print(VarExp{id='varc'}); CloseRFileStmt{exp=VarExp{id='varf'}}))
 print(VarExp{id='varc'})
 SymTable:
 varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in
-varc: (int) value is: 5
+varc: (int) value is: 3
 Out:
 FileTable:
-(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@2503dbd3
+(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@1ed4004b
 
 ExeStack:
 (ReadFileStmt{exp=VarExp{id='varf'}, varName='varc'}; (print(VarExp{id='varc'}); CloseRFileStmt{exp=VarExp{id='varf'}}))
 SymTable:
 varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in
-varc: (int) value is: 5
+varc: (int) value is: 3
 Out:
-(int) value is: 5
+(int) value is: 3
 FileTable:
-(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@2503dbd3
+(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@1ed4004b
 
 ExeStack:
 (print(VarExp{id='varc'}); CloseRFileStmt{exp=VarExp{id='varf'}})
 ReadFileStmt{exp=VarExp{id='varf'}, varName='varc'}
 SymTable:
 varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in
-varc: (int) value is: 5
+varc: (int) value is: 3
 Out:
-(int) value is: 5
+(int) value is: 3
 FileTable:
-(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@2503dbd3
+(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@1ed4004b
 
 ExeStack:
 (print(VarExp{id='varc'}); CloseRFileStmt{exp=VarExp{id='varf'}})
 SymTable:
 varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in
-varc: (int) value is: 22
+varc: (int) value is: 14
 Out:
-(int) value is: 5
+(int) value is: 3
 FileTable:
-(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@2503dbd3
+(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@1ed4004b
 
 ExeStack:
 CloseRFileStmt{exp=VarExp{id='varf'}}
 print(VarExp{id='varc'})
 SymTable:
 varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in
-varc: (int) value is: 22
+varc: (int) value is: 14
 Out:
-(int) value is: 5
+(int) value is: 3
 FileTable:
-(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@2503dbd3
+(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@1ed4004b
 
 ExeStack:
 CloseRFileStmt{exp=VarExp{id='varf'}}
 SymTable:
 varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in
-varc: (int) value is: 22
+varc: (int) value is: 14
 Out:
-(int) value is: 5
-(int) value is: 22
+(int) value is: 3
+(int) value is: 14
 FileTable:
-(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@2503dbd3
+(string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in: java.io.BufferedReader@1ed4004b
 
 ExeStack:
 SymTable:
 varf: (string) value is: /home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in
-varc: (int) value is: 22
+varc: (int) value is: 14
 Out:
-(int) value is: 5
-(int) value is: 22
+(int) value is: 3
+(int) value is: 14
 FileTable:
 

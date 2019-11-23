@@ -24,7 +24,7 @@ public class AssignmentStatement implements Statement {
         DictionaryInterface<String, Value> symbolTable = state.getSymbolTable();
 
         if(symbolTable.isDefined(variableName)){
-            Value value = expression.evaluate(symbolTable);
+            Value value = expression.evaluate(symbolTable, state.getHeap());
             Type variableType = (symbolTable.lookup(variableName)).getType();
             if(value.getType().equals(variableType)){
                 symbolTable.update(variableName, value);

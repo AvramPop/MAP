@@ -1,8 +1,9 @@
 package avram.pop.model.expression;
 
-import avram.pop.utils.MyException;
-import avram.pop.utils.DictionaryInterface;
 import avram.pop.model.value.Value;
+import avram.pop.utils.DictionaryInterface;
+import avram.pop.utils.HeapInterface;
+import avram.pop.utils.MyException;
 
 public class ValueExpression implements Expression {
     private Value value;
@@ -19,7 +20,7 @@ public class ValueExpression implements Expression {
     }
 
     @Override
-    public Value evaluate(DictionaryInterface<String, Value> symbolTable) throws MyException{
+    public Value evaluate(DictionaryInterface<String, Value> symbolTable, HeapInterface<Integer, Value> heap) throws MyException{
         return value;
     }
 }

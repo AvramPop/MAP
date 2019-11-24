@@ -22,8 +22,8 @@ public class WhileStatement implements Statement{
         if(expressionEvaluation.getType().equals(new BoolType())){
             BoolValue expressionValue = (BoolValue) expressionEvaluation;
             if(expressionValue.getValue()){
-                statement.execute(state);
                 state.getExecutionStack().push(this);
+                statement.execute(state);
             } else {
                 state.getExecutionStack().pop();
             }

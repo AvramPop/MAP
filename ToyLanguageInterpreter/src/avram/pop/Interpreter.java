@@ -5,6 +5,7 @@ import avram.pop.model.command.ExitCommand;
 import avram.pop.model.command.RunExample;
 import avram.pop.model.control.ProgramState;
 import avram.pop.model.expression.ArithmeticExpression;
+import avram.pop.model.expression.RelationalExpression;
 import avram.pop.model.expression.ValueExpression;
 import avram.pop.model.expression.VariableExpression;
 import avram.pop.model.statement.*;
@@ -110,12 +111,34 @@ public class Interpreter {
         repository4.addState(programState4);
         Controller controller4 = new Controller(repository4);
 
+        Statement program5 = new CompoundStatement(new VariableDeclareStatement("a", new IntType()),
+                new CompoundStatement(new AssignmentStatement("a", new ValueExpression(new IntValue(5))),
+                        new WhileStatement(new RelationalExpression(new VariableExpression("a"), new ValueExpression(new IntValue(0)), ">"),
+                                new CompoundStatement(new PrintStatement(new VariableExpression("a")),
+                                        new AssignmentStatement("a",
+                                                new ArithmeticExpression('-', new VariableExpression("a"), new ValueExpression(new IntValue(1))))))));
+        DictionaryInterface<String, Value> symbolTable5 = new MyDictionary<>();
+        DictionaryInterface<StringValue, BufferedReader> fileTable5 = new MyDictionary<>();
+        ListInterface<Value> out5 = new MyList<>();
+        StackInterface<Statement> executionStack5 = new MyStack<>();
+        HeapInterface<Integer, Value> heap5 = new Heap<>();
+        ProgramState programState5 = new ProgramState(executionStack5, symbolTable5, out5, fileTable5, program5, heap5);
+        Repository repository5 = null;
+        try{
+            repository5 = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/log5.log");
+        } catch(MyException e){
+            System.err.println(e.getMessage());
+        }
+        repository5.addState(programState5);
+        Controller controller5 = new Controller(repository5);
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
         menu.addCommand(new RunExample("1", "program1", controller1));
         menu.addCommand(new RunExample("2", "program2", controller2));
         menu.addCommand(new RunExample("3", "program3", controller3));
         menu.addCommand(new RunExample("4", "program4", controller4));
+        menu.addCommand(new RunExample("5", "program5", controller5));
         menu.show();
     }
 }

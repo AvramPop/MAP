@@ -11,13 +11,17 @@ public class Heap<K, V> implements HeapInterface<K, V>{
     private int lastAllocated;
     public Heap(){
         nextFreeLocation = 1;
-        lastAllocated = -1;
+        lastAllocated = 1;
         heap = new HashMap<>();
     }
 
     @Override
     public String toLogString(){
-        return "";
+        StringBuilder logString = new StringBuilder();
+        for(Map.Entry<Integer, Value> entry : heap.entrySet()){
+            logString.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+        }
+        return logString.toString();
     }
 
     @Override

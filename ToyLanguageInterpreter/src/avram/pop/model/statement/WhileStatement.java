@@ -17,6 +17,14 @@ public class WhileStatement implements Statement{
     }
 
     @Override
+    public String toString(){
+        return "WhileStatement{" +
+                "condition=" + condition +
+                ", statement=" + statement +
+                '}';
+    }
+
+    @Override
     public ProgramState execute(ProgramState state) throws MyException{
         Value expressionEvaluation = condition.evaluate(state.getSymbolTable(), state.getHeap());
         if(expressionEvaluation.getType().equals(new BoolType())){

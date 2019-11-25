@@ -19,16 +19,24 @@ public class WriteHeapStatement implements Statement{
     }
 
     @Override
+    public String toString(){
+        return "WriteHeapStatement{" +
+                "variableName='" + variableName + '\'' +
+                ", expression=" + expression +
+                '}';
+    }
+
+    @Override
     public ProgramState execute(ProgramState state) throws MyException{
         DictionaryInterface<String, Value> symbolTable = state.getSymbolTable();
         HeapInterface<Integer, Value> heap = state.getHeap();
         if(symbolTable.isDefined(variableName)){
             Value variableValue = symbolTable.lookup(variableName);
-            if(variableValue.getType() instanceof ReferenceType){
+            if(variableValue instanceof ReferenceValue){
                 ReferenceValue reference = (ReferenceValue) variableValue;
                 if(heap.isDefined(reference.getAddress())){
                     Value expressionEvaluation = expression.evaluate(symbolTable, heap);
-                    if(expressionEvaluation.getType().equals(reference.getType())){
+                    if(expressionEvaluation.getType().equals(((ReferenceType)reference.getType()).getInnerType())){
                         heap.update(reference.getAddress(), expressionEvaluation);
                     } else {
                         throw new MyException("expression and reference not of same type");

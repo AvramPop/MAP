@@ -5,7 +5,7 @@ import avram.pop.model.value.Value;
 
 public class ReferenceType implements Type{
     private Type innerType;
-    public ReferenceType(Type innerType) {this.innerType =innerType;}
+    public ReferenceType(Type innerType) {this.innerType = innerType;}
     public Type getInnerType() {return innerType;}
     public boolean equals(Object another){
         if (another instanceof ReferenceType)

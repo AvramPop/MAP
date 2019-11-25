@@ -14,6 +14,11 @@ public class ReferenceValue implements Value{
         this.locationType = locationType;
     }
 
+    public String toString(){
+        return "(ref) address is: " + address + " location type: " + locationType.toString();
+    }
+
+
     @Override
     public boolean equals(Object o){
         if(this == o) return true;

@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Controller {
     private Repository repository;
@@ -33,34 +34,31 @@ public class Controller {
         while(!programState.getExecutionStack().isEmpty()){
             oneStep(programState);
             repository.logProgramState();
-            programState.getHeap().setContent(unsafeGarbageCollector(
-                    getAddressesFomSymbolTable(programState.getSymbolTable().getContent().values()),
+            programState.getHeap().setContent(garbageCollector(
+                    getAddresses(programState.getSymbolTable().getContent().values(), programState.getHeap().getContent().values()),
                     programState.getHeap().getContent()));
         }
     }
 
-    private Map<Integer, Value> unsafeGarbageCollector(List<Integer> symbolTableAddresses, Map<Integer, Value> heap){
+    private Map<Integer, Value> garbageCollector(List<Integer> addresses, Map<Integer, Value> heap){
         return heap.entrySet().stream()
-                .filter(e -> (symbolTableAddresses.contains(e.getKey()) ||
-                        heap.entrySet().stream().anyMatch(p -> {
-                        if(p.getValue().getType() instanceof ReferenceValue){
-                            ReferenceValue value = (ReferenceValue) p.getValue();
-                            if(value.getAddress() == e.getKey()){
-                                return true;
-                            }
-                        }
-                        return false;
-                })))
+                .filter(e -> (addresses.contains(e.getKey())))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    private List<Integer> getAddressesFomSymbolTable(Collection<Value> symbolTableValues){
-        return symbolTableValues.stream()
+    private List<Integer> getAddresses(Collection<Value> symbolTableValues, Collection<Value> heapValues){
+        return Stream.concat(
+                symbolTableValues.stream()
                 .filter(v-> v instanceof ReferenceValue)
                 .map(v-> {
                     ReferenceValue referenceValue = (ReferenceValue) v;
                     return referenceValue.getAddress();
-                })
-                .collect(Collectors.toList());
+                }),
+                heapValues.stream()
+                .filter(v-> v instanceof ReferenceValue)
+                .map(v-> {
+                    ReferenceValue referenceValue = (ReferenceValue) v;
+                    return referenceValue.getAddress();
+                })).collect(Collectors.toList());
     }
 }

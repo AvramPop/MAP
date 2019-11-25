@@ -4,13 +4,11 @@ import avram.pop.controller.Controller;
 import avram.pop.model.command.ExitCommand;
 import avram.pop.model.command.RunExample;
 import avram.pop.model.control.ProgramState;
-import avram.pop.model.expression.ArithmeticExpression;
-import avram.pop.model.expression.RelationalExpression;
-import avram.pop.model.expression.ValueExpression;
-import avram.pop.model.expression.VariableExpression;
+import avram.pop.model.expression.*;
 import avram.pop.model.statement.*;
 import avram.pop.model.type.BoolType;
 import avram.pop.model.type.IntType;
+import avram.pop.model.type.ReferenceType;
 import avram.pop.model.type.StringType;
 import avram.pop.model.value.BoolValue;
 import avram.pop.model.value.IntValue;
@@ -132,6 +130,70 @@ public class Interpreter {
         repository5.addState(programState5);
         Controller controller5 = new Controller(repository5);
 
+        Statement program6 = new CompoundStatement(new VariableDeclareStatement("v", new ReferenceType(new IntType())),
+                new CompoundStatement(new NewStatement("v", new ValueExpression(new IntValue(20))),
+                        new CompoundStatement(new VariableDeclareStatement("a", new ReferenceType(new ReferenceType(new IntType()))),
+                                new CompoundStatement(new NewStatement("a", new VariableExpression("v")),
+                                        new CompoundStatement(new PrintStatement(new VariableExpression("v")),
+                                                new PrintStatement(new VariableExpression("a")))))));
+        DictionaryInterface<String, Value> symbolTable6 = new MyDictionary<>();
+        DictionaryInterface<StringValue, BufferedReader> fileTable6 = new MyDictionary<>();
+        ListInterface<Value> out6 = new MyList<>();
+        StackInterface<Statement> executionStack6 = new MyStack<>();
+        HeapInterface<Integer, Value> heap6 = new Heap<>();
+        ProgramState programState6 = new ProgramState(executionStack6, symbolTable6, out6, fileTable6, program6, heap6);
+        Repository repository6 = null;
+        try{
+            repository6 = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/log6.log");
+        } catch(MyException e){
+            System.err.println(e.getMessage());
+        }
+        repository6.addState(programState6);
+        Controller controller6 = new Controller(repository6);
+
+        Statement program7 = new CompoundStatement(new VariableDeclareStatement("v", new ReferenceType(new IntType())),
+                new CompoundStatement(new NewStatement("v", new ValueExpression(new IntValue(20))),
+                        new CompoundStatement(new VariableDeclareStatement("a", new ReferenceType(new ReferenceType(new IntType()))),
+                                new CompoundStatement(new NewStatement("a", new VariableExpression("v")),
+                                        new CompoundStatement(new PrintStatement(new HeapReadingExpression(new VariableExpression("v"))),
+                                                new PrintStatement(new ArithmeticExpression('+',
+                                                        new HeapReadingExpression(new HeapReadingExpression(new VariableExpression("a"))), new ValueExpression(new IntValue(5)))))))));
+        DictionaryInterface<String, Value> symbolTable7 = new MyDictionary<>();
+        DictionaryInterface<StringValue, BufferedReader> fileTable7 = new MyDictionary<>();
+        ListInterface<Value> out7 = new MyList<>();
+        StackInterface<Statement> executionStack7 = new MyStack<>();
+        HeapInterface<Integer, Value> heap7 = new Heap<>();
+        ProgramState programState7 = new ProgramState(executionStack7, symbolTable7, out7, fileTable7, program7, heap7);
+        Repository repository7 = null;
+        try{
+            repository7 = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/log7.log");
+        } catch(MyException e){
+            System.err.println(e.getMessage());
+        }
+        repository7.addState(programState7);
+        Controller controller7 = new Controller(repository7);
+
+        Statement program8 = new CompoundStatement(new VariableDeclareStatement("v", new ReferenceType(new IntType())),
+                new CompoundStatement(new NewStatement("v", new ValueExpression(new IntValue(20))),
+                        new CompoundStatement(new PrintStatement(new HeapReadingExpression(new VariableExpression("v"))),
+                                new CompoundStatement(new WriteHeapStatement("v", new ValueExpression(new IntValue(30))),
+                                        new PrintStatement(new ArithmeticExpression('+',
+                                                new HeapReadingExpression(new VariableExpression("v")), new ValueExpression(new IntValue(5))))))));
+        DictionaryInterface<String, Value> symbolTable8 = new MyDictionary<>();
+        DictionaryInterface<StringValue, BufferedReader> fileTable8 = new MyDictionary<>();
+        ListInterface<Value> out8 = new MyList<>();
+        StackInterface<Statement> executionStack8 = new MyStack<>();
+        HeapInterface<Integer, Value> heap8 = new Heap<>();
+        ProgramState programState8 = new ProgramState(executionStack8, symbolTable8, out8, fileTable8, program8, heap8);
+        Repository repository8 = null;
+        try{
+            repository8 = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/log8.log");
+        } catch(MyException e){
+            System.err.println(e.getMessage());
+        }
+        repository8.addState(programState8);
+        Controller controller8 = new Controller(repository8);
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
         menu.addCommand(new RunExample("1", "program1", controller1));
@@ -139,6 +201,9 @@ public class Interpreter {
         menu.addCommand(new RunExample("3", "program3", controller3));
         menu.addCommand(new RunExample("4", "program4", controller4));
         menu.addCommand(new RunExample("5", "program5", controller5));
+        menu.addCommand(new RunExample("6", "program6", controller6));
+        menu.addCommand(new RunExample("7", "program7", controller7));
+        menu.addCommand(new RunExample("8", "program8", controller8));
         menu.show();
     }
 }

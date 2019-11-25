@@ -3,7 +3,6 @@ package avram.pop.model.statement;
 import avram.pop.model.control.ProgramState;
 import avram.pop.model.expression.Expression;
 import avram.pop.model.type.ReferenceType;
-import avram.pop.model.type.Type;
 import avram.pop.model.value.ReferenceValue;
 import avram.pop.model.value.Value;
 import avram.pop.utils.DictionaryInterface;
@@ -19,18 +18,23 @@ public class NewStatement implements Statement{
         this.expression = expression;
     }
 
+    public String toString(){
+        return "new " + variableName + " value " + expression.toString();
+    }
+
     @Override
     public ProgramState execute(ProgramState state) throws MyException{
         DictionaryInterface<String, Value> symbolTable = state.getSymbolTable();
         if(symbolTable.isDefined(variableName)){
-            Type variableType = symbolTable.lookup(variableName).getType();
-            if(variableType instanceof ReferenceType){
+            Value variableValue = symbolTable.lookup(variableName);
+            if(variableValue.getType() instanceof ReferenceType){
                 Value expressionValue = expression.evaluate(symbolTable, state.getHeap());
-                ReferenceValue referenceValue = (ReferenceValue) expressionValue;
-                if(referenceValue.getType().equals(variableType)){
+               // ReferenceValue variableReference = (ReferenceValue) variableValue;
+               // ReferenceValue referenceValue = (ReferenceValue) expressionValue;
+                if(expressionValue.getType().equals(((ReferenceType) variableValue.getType()).getInnerType())){
                     HeapInterface<Integer, Value> heap = state.getHeap();
                     heap.add(expressionValue);
-                    symbolTable.update(variableName, new ReferenceValue(heap.getLastAllocatedLocation(), variableType));
+                    symbolTable.update(variableName, new ReferenceValue(heap.getLastAllocatedLocation(), ((ReferenceType) variableValue.getType()).getInnerType()));
                 } else {
                     throw new MyException("variable and expression not of same type");
                 }

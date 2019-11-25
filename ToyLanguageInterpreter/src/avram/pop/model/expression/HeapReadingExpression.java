@@ -1,6 +1,5 @@
 package avram.pop.model.expression;
 
-import avram.pop.model.type.ReferenceType;
 import avram.pop.model.value.ReferenceValue;
 import avram.pop.model.value.Value;
 import avram.pop.utils.DictionaryInterface;
@@ -15,9 +14,16 @@ public class HeapReadingExpression implements Expression{
     }
 
     @Override
+    public String toString(){
+        return "HeapRead{" +
+                "expr=" + expression +
+                '}';
+    }
+
+    @Override
     public Value evaluate(DictionaryInterface<String, Value> symbolTable, HeapInterface<Integer, Value> heap) throws MyException{
         Value expressionEvaluation = expression.evaluate(symbolTable, heap);
-        if(expressionEvaluation.getType() instanceof ReferenceType){
+        if(expressionEvaluation instanceof ReferenceValue){
             ReferenceValue referenceValue = (ReferenceValue) expressionEvaluation;
             try{
                 return heap.get(referenceValue.getAddress());

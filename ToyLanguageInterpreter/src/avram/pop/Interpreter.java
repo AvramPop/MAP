@@ -194,6 +194,27 @@ public class Interpreter {
         repository8.addState(programState8);
         Controller controller8 = new Controller(repository8);
 
+        Statement program9 = new CompoundStatement(new VariableDeclareStatement("v", new ReferenceType(new IntType())),
+                new CompoundStatement(new NewStatement("v", new ValueExpression(new IntValue(20))),
+                        new CompoundStatement(new VariableDeclareStatement("a", new ReferenceType(new ReferenceType(new IntType()))),
+                                new CompoundStatement(new NewStatement("a", new VariableExpression("a")),
+                                        new CompoundStatement(new NewStatement("v", new ValueExpression(new IntValue(30))),
+                                                new PrintStatement(new HeapReadingExpression(new HeapReadingExpression(new VariableExpression("a")))))))));
+        DictionaryInterface<String, Value> symbolTable9 = new MyDictionary<>();
+        DictionaryInterface<StringValue, BufferedReader> fileTable9 = new MyDictionary<>();
+        ListInterface<Value> out9 = new MyList<>();
+        StackInterface<Statement> executionStack9 = new MyStack<>();
+        HeapInterface<Integer, Value> heap9 = new Heap<>();
+        ProgramState programState9 = new ProgramState(executionStack9, symbolTable9, out9, fileTable9, program9, heap9);
+        Repository repository9 = null;
+        try{
+            repository9 = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/log9.log");
+        } catch(MyException e){
+            System.err.println(e.getMessage());
+        }
+        repository9.addState(programState9);
+        Controller controller9 = new Controller(repository9);
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
         menu.addCommand(new RunExample("1", "program1", controller1));
@@ -204,6 +225,7 @@ public class Interpreter {
         menu.addCommand(new RunExample("6", "program6", controller6));
         menu.addCommand(new RunExample("7", "program7", controller7));
         menu.addCommand(new RunExample("8", "program8", controller8));
+        menu.addCommand(new RunExample("9", "program9", controller9));
         menu.show();
     }
 }

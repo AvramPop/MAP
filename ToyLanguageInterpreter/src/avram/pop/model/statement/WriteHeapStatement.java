@@ -2,7 +2,6 @@ package avram.pop.model.statement;
 
 import avram.pop.model.control.ProgramState;
 import avram.pop.model.expression.Expression;
-import avram.pop.model.type.ReferenceType;
 import avram.pop.model.value.ReferenceValue;
 import avram.pop.model.value.Value;
 import avram.pop.utils.DictionaryInterface;
@@ -36,7 +35,7 @@ public class WriteHeapStatement implements Statement{
                 ReferenceValue reference = (ReferenceValue) variableValue;
                 if(heap.isDefined(reference.getAddress())){
                     Value expressionEvaluation = expression.evaluate(symbolTable, heap);
-                    if(expressionEvaluation.getType().equals(((ReferenceType)reference.getType()).getInnerType())){
+                    if(expressionEvaluation.getType().equals(((ReferenceValue)reference).getLocationType())){
                         heap.update(reference.getAddress(), expressionEvaluation);
                     } else {
                         throw new MyException("expression and reference not of same type");

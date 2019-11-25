@@ -32,8 +32,6 @@ public class WhileStatement implements Statement{
             if(expressionValue.getValue()){
                 state.getExecutionStack().push(this);
                 statement.execute(state);
-            } else {
-                state.getExecutionStack().pop();
             }
         } else {
             throw new MyException("expression is not a bool");

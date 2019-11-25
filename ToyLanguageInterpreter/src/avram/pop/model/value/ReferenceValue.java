@@ -32,7 +32,7 @@ public class ReferenceValue implements Value{
     public int hashCode(){
         return Objects.hash(address, locationType);
     }
-
+    public Type getLocationType() {return locationType;}
     public int getAddress() {return address;}
     public Type getType() { return new ReferenceType(locationType);}
 }

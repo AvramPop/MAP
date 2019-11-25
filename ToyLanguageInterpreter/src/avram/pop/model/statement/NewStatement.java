@@ -29,12 +29,10 @@ public class NewStatement implements Statement{
             Value variableValue = symbolTable.lookup(variableName);
             if(variableValue.getType() instanceof ReferenceType){
                 Value expressionValue = expression.evaluate(symbolTable, state.getHeap());
-               // ReferenceValue variableReference = (ReferenceValue) variableValue;
-               // ReferenceValue referenceValue = (ReferenceValue) expressionValue;
-                if(expressionValue.getType().equals(((ReferenceType) variableValue.getType()).getInnerType())){
+                if(expressionValue.getType().equals(((ReferenceValue) variableValue).getLocationType())){
                     HeapInterface<Integer, Value> heap = state.getHeap();
                     heap.add(expressionValue);
-                    symbolTable.update(variableName, new ReferenceValue(heap.getLastAllocatedLocation(), ((ReferenceType) variableValue.getType()).getInnerType()));
+                    symbolTable.update(variableName, new ReferenceValue(heap.getLastAllocatedLocation(), ((ReferenceValue) variableValue).getLocationType()));
                 } else {
                     throw new MyException("variable and expression not of same type");
                 }

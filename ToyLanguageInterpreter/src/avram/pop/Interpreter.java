@@ -196,8 +196,8 @@ public class Interpreter {
 
         Statement program9 = new CompoundStatement(new VariableDeclareStatement("v", new ReferenceType(new IntType())),
                 new CompoundStatement(new NewStatement("v", new ValueExpression(new IntValue(20))),
-                        new CompoundStatement(new VariableDeclareStatement("a", new ReferenceType(new ReferenceType(new IntType()))),
-                                new CompoundStatement(new NewStatement("a", new VariableExpression("a")),
+                    new CompoundStatement(new VariableDeclareStatement("a", new ReferenceType(new ReferenceType(new IntType()))),
+                                new CompoundStatement(new NewStatement("a", new VariableExpression("v")),
                                         new CompoundStatement(new NewStatement("v", new ValueExpression(new IntValue(30))),
                                                 new PrintStatement(new HeapReadingExpression(new HeapReadingExpression(new VariableExpression("a")))))))));
         DictionaryInterface<String, Value> symbolTable9 = new MyDictionary<>();

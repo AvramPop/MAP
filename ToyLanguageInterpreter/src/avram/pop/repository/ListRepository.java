@@ -38,21 +38,39 @@ public class ListRepository implements Repository {
     }
 
     @Override
-    public void logProgramState() throws MyException{
+    public void logProgramState(ProgramState programState) throws MyException{
         PrintWriter logFile;
         try{
             logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath.toFile(), true)));
         } catch(IOException e){
             throw new MyException("files error");
         }
-        String log = getCurrentProgram().toLogString();
+        String log = programState.toLogString();
 
         logFile.print(log);
         logFile.close();
     }
 
     @Override
-    public ProgramState getCurrentProgram(){
-        return states.get(0);
+    public List<ProgramState> getProgramList(){
+        return states;
+    }
+
+    @Override
+    public void setProgramList(List<ProgramState> programStates){
+        states = programStates;
+    }
+
+    @Override
+    public void logMessage(String message) throws MyException{
+        PrintWriter logFile;
+        try{
+            logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath.toFile(), true)));
+        } catch(IOException e){
+            throw new MyException("files error");
+        }
+
+        logFile.print(message);
+        logFile.close();
     }
 }

@@ -36,4 +36,9 @@ public class StringValue implements Value {
     public Type getType(){
         return new StringType();
     }
+
+    @Override
+    public Value copy(){
+        return new StringValue(value);
+    }
 }

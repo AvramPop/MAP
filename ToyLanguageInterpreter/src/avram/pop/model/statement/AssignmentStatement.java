@@ -34,6 +34,6 @@ public class AssignmentStatement implements Statement {
         } else {
             throw new MyException("the used variable" + variableName + " was not declared before");
         }
-        return state;
+        return null;
     }
 }

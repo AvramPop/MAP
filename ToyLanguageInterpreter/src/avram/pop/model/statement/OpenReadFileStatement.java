@@ -46,6 +46,6 @@ public class OpenReadFileStatement implements Statement {
         } else {
             throw new MyException("expression not string");
         }
-        return state;
+        return null;
     }
 }

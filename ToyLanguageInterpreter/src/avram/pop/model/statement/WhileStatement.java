@@ -36,6 +36,6 @@ public class WhileStatement implements Statement{
         } else {
             throw new MyException("expression is not a bool");
         }
-        return state;
+        return null;
     }
 }

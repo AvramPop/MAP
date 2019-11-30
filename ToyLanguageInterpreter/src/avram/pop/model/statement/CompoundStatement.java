@@ -21,6 +21,6 @@ public class CompoundStatement implements Statement {
         StackInterface<Statement> executionStack = state.getExecutionStack();
         executionStack.push(secondStatement);
         executionStack.push(firstStatement);
-        return state;
+        return null;
     }
 }

@@ -215,6 +215,34 @@ public class Interpreter {
         repository9.addState(programState9);
         Controller controller9 = new Controller(repository9);
 
+        Statement program10 = new CompoundStatement(new VariableDeclareStatement("v", new IntType()),
+                new CompoundStatement(new VariableDeclareStatement("a", new ReferenceType(new IntType())),
+                        new CompoundStatement(new AssignmentStatement("v", new ValueExpression(new IntValue(10))),
+                                new CompoundStatement(new NewStatement("a", new ValueExpression(new IntValue(22))),
+                                        new CompoundStatement(new ForkStatement(
+                                                new CompoundStatement(new WriteHeapStatement("a", new ValueExpression(new IntValue(30))),
+                                                        new CompoundStatement(new AssignmentStatement("v", new ValueExpression(new IntValue(32))),
+                                                                new CompoundStatement(
+                                                                        new PrintStatement(new VariableExpression("v")),
+                                                                        new PrintStatement(new HeapReadingExpression(new VariableExpression("a"))))))),
+                                            new CompoundStatement(
+                                                new PrintStatement(new VariableExpression("v")),
+                                                new PrintStatement(new HeapReadingExpression(new VariableExpression("a")))))))));
+        DictionaryInterface<String, Value> symbolTable10 = new MyDictionary<>();
+        DictionaryInterface<StringValue, BufferedReader> fileTable10 = new MyDictionary<>();
+        ListInterface<Value> out10 = new MyList<>();
+        StackInterface<Statement> executionStack10 = new MyStack<>();
+        HeapInterface<Integer, Value> heap10 = new Heap<>();
+        ProgramState programState10 = new ProgramState(executionStack10, symbolTable10, out10, fileTable10, program10, heap10);
+        Repository repository10 = null;
+        try{
+            repository10 = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/log10.log");
+        } catch(MyException e){
+            System.err.println(e.getMessage());
+        }
+        repository10.addState(programState10);
+        Controller controller10 = new Controller(repository10);
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
         menu.addCommand(new RunExample("1", "program1", controller1));
@@ -226,6 +254,12 @@ public class Interpreter {
         menu.addCommand(new RunExample("7", "program7", controller7));
         menu.addCommand(new RunExample("8", "program8", controller8));
         menu.addCommand(new RunExample("9", "program9", controller9));
-        menu.show();
+        menu.addCommand(new RunExample("10", "program10", controller10));
+
+        try{
+            menu.show();
+        } catch(InterruptedException e){
+            e.printStackTrace();
+        }
     }
 }

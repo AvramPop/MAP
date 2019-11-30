@@ -20,6 +20,6 @@ public class PrintStatement implements Statement {
     public ProgramState execute(ProgramState state) throws MyException{
         ListInterface<Value> outputBuffer = state.getOutputBuffer();
         outputBuffer.add(expression.evaluate(state.getSymbolTable(), state.getHeap()));
-        return state;
+        return null;
     }
 }

@@ -42,6 +42,6 @@ public class NewStatement implements Statement{
         } else {
             throw new MyException("variable not defined");
         }
-        return state;
+        return null;
     }
 }

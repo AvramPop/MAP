@@ -35,6 +35,6 @@ public class IfStatement implements Statement {
         } else {
             throw new MyException("conditional expr is not a boolean");
         }
-        return state;
+        return null;
     }
 }

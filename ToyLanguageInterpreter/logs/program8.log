@@ -1,0 +1,94 @@
+id = 8
+ExeStack:
+(new v value ValueExp{e=(int) value is: 20}; (print(HeapRead{expr=VarExp{id='v'}}); (WriteHeapStatement{variableName='v', expression=ValueExp{e=(int) value is: 30}}; print(ArithExp{e1=HeapRead{expr=VarExp{id='v'}}, e2=ValueExp{e=(int) value is: 5}, op=1}))))
+VarDeclStmt{name='v', typ=Ref(int)}
+SymTable:
+Out:
+FileTable:
+Heap:
+
+id = 8
+ExeStack:
+(new v value ValueExp{e=(int) value is: 20}; (print(HeapRead{expr=VarExp{id='v'}}); (WriteHeapStatement{variableName='v', expression=ValueExp{e=(int) value is: 30}}; print(ArithExp{e1=HeapRead{expr=VarExp{id='v'}}, e2=ValueExp{e=(int) value is: 5}, op=1}))))
+SymTable:
+v: (ref) address is: 0 location type: int
+Out:
+FileTable:
+Heap:
+
+id = 8
+ExeStack:
+(print(HeapRead{expr=VarExp{id='v'}}); (WriteHeapStatement{variableName='v', expression=ValueExp{e=(int) value is: 30}}; print(ArithExp{e1=HeapRead{expr=VarExp{id='v'}}, e2=ValueExp{e=(int) value is: 5}, op=1})))
+new v value ValueExp{e=(int) value is: 20}
+SymTable:
+v: (ref) address is: 0 location type: int
+Out:
+FileTable:
+Heap:
+
+id = 8
+ExeStack:
+(print(HeapRead{expr=VarExp{id='v'}}); (WriteHeapStatement{variableName='v', expression=ValueExp{e=(int) value is: 30}}; print(ArithExp{e1=HeapRead{expr=VarExp{id='v'}}, e2=ValueExp{e=(int) value is: 5}, op=1})))
+SymTable:
+v: (ref) address is: 1 location type: int
+Out:
+FileTable:
+Heap:
+1: (int) value is: 20
+
+id = 8
+ExeStack:
+(WriteHeapStatement{variableName='v', expression=ValueExp{e=(int) value is: 30}}; print(ArithExp{e1=HeapRead{expr=VarExp{id='v'}}, e2=ValueExp{e=(int) value is: 5}, op=1}))
+print(HeapRead{expr=VarExp{id='v'}})
+SymTable:
+v: (ref) address is: 1 location type: int
+Out:
+FileTable:
+Heap:
+1: (int) value is: 20
+
+id = 8
+ExeStack:
+(WriteHeapStatement{variableName='v', expression=ValueExp{e=(int) value is: 30}}; print(ArithExp{e1=HeapRead{expr=VarExp{id='v'}}, e2=ValueExp{e=(int) value is: 5}, op=1}))
+SymTable:
+v: (ref) address is: 1 location type: int
+Out:
+(int) value is: 20
+FileTable:
+Heap:
+1: (int) value is: 20
+
+id = 8
+ExeStack:
+print(ArithExp{e1=HeapRead{expr=VarExp{id='v'}}, e2=ValueExp{e=(int) value is: 5}, op=1})
+WriteHeapStatement{variableName='v', expression=ValueExp{e=(int) value is: 30}}
+SymTable:
+v: (ref) address is: 1 location type: int
+Out:
+(int) value is: 20
+FileTable:
+Heap:
+1: (int) value is: 20
+
+id = 8
+ExeStack:
+print(ArithExp{e1=HeapRead{expr=VarExp{id='v'}}, e2=ValueExp{e=(int) value is: 5}, op=1})
+SymTable:
+v: (ref) address is: 1 location type: int
+Out:
+(int) value is: 20
+FileTable:
+Heap:
+1: (int) value is: 30
+
+id = 8
+ExeStack:
+SymTable:
+v: (ref) address is: 1 location type: int
+Out:
+(int) value is: 20
+(int) value is: 35
+FileTable:
+Heap:
+1: (int) value is: 30
+

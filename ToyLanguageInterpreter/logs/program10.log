@@ -1,0 +1,244 @@
+id = 10
+ExeStack:
+(VarDeclStmt{name='a', typ=Ref(int)}; (v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.model.statement.ForkStatement@2a556333; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))))))
+VarDeclStmt{name='v', typ=int}
+SymTable:
+Out:
+FileTable:
+Heap:
+
+id = 10
+ExeStack:
+(VarDeclStmt{name='a', typ=Ref(int)}; (v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.model.statement.ForkStatement@2a556333; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))))))
+SymTable:
+v: (int) value is: 0
+Out:
+FileTable:
+Heap:
+
+id = 10
+ExeStack:
+(v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.model.statement.ForkStatement@2a556333; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}})))))
+VarDeclStmt{name='a', typ=Ref(int)}
+SymTable:
+v: (int) value is: 0
+Out:
+FileTable:
+Heap:
+
+id = 10
+ExeStack:
+(v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.model.statement.ForkStatement@2a556333; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}})))))
+SymTable:
+a: (ref) address is: 0 location type: int
+v: (int) value is: 0
+Out:
+FileTable:
+Heap:
+
+id = 10
+ExeStack:
+(new a value ValueExp{e=(int) value is: 22}; (avram.pop.model.statement.ForkStatement@2a556333; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))))
+v = ValueExp{e=(int) value is: 10}
+SymTable:
+a: (ref) address is: 0 location type: int
+v: (int) value is: 0
+Out:
+FileTable:
+Heap:
+
+id = 10
+ExeStack:
+(new a value ValueExp{e=(int) value is: 22}; (avram.pop.model.statement.ForkStatement@2a556333; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))))
+SymTable:
+a: (ref) address is: 0 location type: int
+v: (int) value is: 10
+Out:
+FileTable:
+Heap:
+
+id = 10
+ExeStack:
+(avram.pop.model.statement.ForkStatement@2a556333; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}})))
+new a value ValueExp{e=(int) value is: 22}
+SymTable:
+a: (ref) address is: 0 location type: int
+v: (int) value is: 10
+Out:
+FileTable:
+Heap:
+
+id = 10
+ExeStack:
+(avram.pop.model.statement.ForkStatement@2a556333; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}})))
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 10
+Out:
+FileTable:
+Heap:
+1: (int) value is: 22
+
+id = 10
+ExeStack:
+(print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))
+avram.pop.model.statement.ForkStatement@2a556333
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 10
+Out:
+FileTable:
+Heap:
+1: (int) value is: 22
+
+id = 10
+ExeStack:
+(print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 10
+Out:
+FileTable:
+Heap:
+1: (int) value is: 22
+
+id = 11
+ExeStack:
+(WriteHeapStatement{variableName='a', expression=ValueExp{e=(int) value is: 30}}; (v = ValueExp{e=(int) value is: 32}; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))))
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 10
+Out:
+FileTable:
+Heap:
+1: (int) value is: 22
+
+id = 10
+ExeStack:
+print(HeapRead{expr=VarExp{id='a'}})
+print(VarExp{id='v'})
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 10
+Out:
+FileTable:
+Heap:
+1: (int) value is: 22
+
+id = 11
+ExeStack:
+(v = ValueExp{e=(int) value is: 32}; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}})))
+WriteHeapStatement{variableName='a', expression=ValueExp{e=(int) value is: 30}}
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 10
+Out:
+FileTable:
+Heap:
+1: (int) value is: 22
+
+id = 10
+ExeStack:
+print(HeapRead{expr=VarExp{id='a'}})
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 10
+Out:
+(int) value is: 10
+FileTable:
+Heap:
+1: (int) value is: 30
+
+id = 11
+ExeStack:
+(v = ValueExp{e=(int) value is: 32}; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}})))
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 10
+Out:
+(int) value is: 10
+FileTable:
+Heap:
+1: (int) value is: 30
+
+id = 10
+ExeStack:
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 10
+Out:
+(int) value is: 10
+(int) value is: 30
+FileTable:
+Heap:
+1: (int) value is: 30
+
+id = 11
+ExeStack:
+(print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))
+v = ValueExp{e=(int) value is: 32}
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 10
+Out:
+(int) value is: 10
+(int) value is: 30
+FileTable:
+Heap:
+1: (int) value is: 30
+
+id = 11
+ExeStack:
+(print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 32
+Out:
+(int) value is: 10
+(int) value is: 30
+FileTable:
+Heap:
+1: (int) value is: 30
+
+id = 11
+ExeStack:
+print(HeapRead{expr=VarExp{id='a'}})
+print(VarExp{id='v'})
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 32
+Out:
+(int) value is: 10
+(int) value is: 30
+FileTable:
+Heap:
+1: (int) value is: 30
+
+id = 11
+ExeStack:
+print(HeapRead{expr=VarExp{id='a'}})
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 32
+Out:
+(int) value is: 10
+(int) value is: 30
+(int) value is: 32
+FileTable:
+Heap:
+1: (int) value is: 30
+
+id = 11
+ExeStack:
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 32
+Out:
+(int) value is: 10
+(int) value is: 30
+(int) value is: 32
+(int) value is: 30
+FileTable:
+Heap:
+1: (int) value is: 30
+

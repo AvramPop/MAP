@@ -1,0 +1,123 @@
+id = 6
+ExeStack:
+(new v value ValueExp{e=(int) value is: 20}; (VarDeclStmt{name='a', typ=Ref(Ref(int))}; (new a value VarExp{id='v'}; (print(VarExp{id='v'}); print(VarExp{id='a'})))))
+VarDeclStmt{name='v', typ=Ref(int)}
+SymTable:
+Out:
+FileTable:
+Heap:
+
+id = 6
+ExeStack:
+(new v value ValueExp{e=(int) value is: 20}; (VarDeclStmt{name='a', typ=Ref(Ref(int))}; (new a value VarExp{id='v'}; (print(VarExp{id='v'}); print(VarExp{id='a'})))))
+SymTable:
+v: (ref) address is: 0 location type: int
+Out:
+FileTable:
+Heap:
+
+id = 6
+ExeStack:
+(VarDeclStmt{name='a', typ=Ref(Ref(int))}; (new a value VarExp{id='v'}; (print(VarExp{id='v'}); print(VarExp{id='a'}))))
+new v value ValueExp{e=(int) value is: 20}
+SymTable:
+v: (ref) address is: 0 location type: int
+Out:
+FileTable:
+Heap:
+
+id = 6
+ExeStack:
+(VarDeclStmt{name='a', typ=Ref(Ref(int))}; (new a value VarExp{id='v'}; (print(VarExp{id='v'}); print(VarExp{id='a'}))))
+SymTable:
+v: (ref) address is: 1 location type: int
+Out:
+FileTable:
+Heap:
+1: (int) value is: 20
+
+id = 6
+ExeStack:
+(new a value VarExp{id='v'}; (print(VarExp{id='v'}); print(VarExp{id='a'})))
+VarDeclStmt{name='a', typ=Ref(Ref(int))}
+SymTable:
+v: (ref) address is: 1 location type: int
+Out:
+FileTable:
+Heap:
+1: (int) value is: 20
+
+id = 6
+ExeStack:
+(new a value VarExp{id='v'}; (print(VarExp{id='v'}); print(VarExp{id='a'})))
+SymTable:
+a: (ref) address is: 0 location type: Ref(int)
+v: (ref) address is: 1 location type: int
+Out:
+FileTable:
+Heap:
+1: (int) value is: 20
+
+id = 6
+ExeStack:
+(print(VarExp{id='v'}); print(VarExp{id='a'}))
+new a value VarExp{id='v'}
+SymTable:
+a: (ref) address is: 0 location type: Ref(int)
+v: (ref) address is: 1 location type: int
+Out:
+FileTable:
+Heap:
+1: (int) value is: 20
+
+id = 6
+ExeStack:
+(print(VarExp{id='v'}); print(VarExp{id='a'}))
+SymTable:
+a: (ref) address is: 2 location type: Ref(int)
+v: (ref) address is: 1 location type: int
+Out:
+FileTable:
+Heap:
+1: (int) value is: 20
+2: (ref) address is: 1 location type: int
+
+id = 6
+ExeStack:
+print(VarExp{id='a'})
+print(VarExp{id='v'})
+SymTable:
+a: (ref) address is: 2 location type: Ref(int)
+v: (ref) address is: 1 location type: int
+Out:
+FileTable:
+Heap:
+1: (int) value is: 20
+2: (ref) address is: 1 location type: int
+
+id = 6
+ExeStack:
+print(VarExp{id='a'})
+SymTable:
+a: (ref) address is: 2 location type: Ref(int)
+v: (ref) address is: 1 location type: int
+Out:
+(ref) address is: 1 location type: int
+FileTable:
+Heap:
+1: (int) value is: 20
+2: (ref) address is: 1 location type: int
+
+id = 6
+ExeStack:
+SymTable:
+a: (ref) address is: 2 location type: Ref(int)
+v: (ref) address is: 1 location type: int
+Out:
+(ref) address is: 1 location type: int
+(ref) address is: 2 location type: Ref(int)
+FileTable:
+Heap:
+1: (int) value is: 20
+2: (ref) address is: 1 location type: int
+

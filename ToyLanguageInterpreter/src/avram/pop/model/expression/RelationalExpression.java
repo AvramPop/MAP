@@ -1,5 +1,6 @@
 package avram.pop.model.expression;
 
+import avram.pop.model.type.BoolType;
 import avram.pop.model.type.IntType;
 import avram.pop.model.type.Type;
 import avram.pop.model.value.BoolValue;
@@ -68,7 +69,7 @@ public class RelationalExpression implements Expression {
         type2 = secondOperand.typecheck(typeEnvironment);
         if(type1.equals(new IntType())){
             if(type2.equals(new IntType())){
-                return new IntType();
+                return new BoolType();
             } else throw new MyException("second operand is not an integer");
         } else throw new MyException("first operand is not an integer");
     }

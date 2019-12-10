@@ -50,6 +50,6 @@ public class WhileStatement implements Statement{
             return typeEnvironment;
         }
         else
-            throw new MyException("The condition of IF has not the type bool");
+            throw new MyException("The condition of WHILE has not the type bool");
     }
 }

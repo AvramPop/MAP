@@ -108,6 +108,12 @@ public class Interpreter {
                                                 new PrintStatement(new VariableExpression("v")),
                                                 new PrintStatement(new HeapReadingExpression(new VariableExpression("a")))))))));
 
+        Statement test = new CompoundStatement(
+                new VariableDeclareStatement("v", new IntType()),
+                new CompoundStatement(
+                        new AssignmentStatement("v", new ValueExpression(new IntValue(2))),
+                        new PrintStatement(new VariableExpression("v"))));
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
         menu.addCommand(new RunExample("1", "program1", createProgram("program1", program1)));
@@ -120,6 +126,7 @@ public class Interpreter {
         menu.addCommand(new RunExample("8", "program8", createProgram("program8", program8)));
         menu.addCommand(new RunExample("9", "program9", createProgram("program9", program9)));
         menu.addCommand(new RunExample("10", "program10", createProgram("program10", program10)));
+        menu.addCommand(new RunExample("11", "test", createProgram("test", test)));
 
         try{
             menu.show();

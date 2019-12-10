@@ -4,6 +4,7 @@ import avram.pop.model.control.ProgramState;
 import avram.pop.model.expression.Expression;
 import avram.pop.model.type.IntType;
 import avram.pop.model.type.StringType;
+import avram.pop.model.type.Type;
 import avram.pop.model.value.Value;
 import avram.pop.model.value.IntValue;
 import avram.pop.model.value.StringValue;
@@ -59,6 +60,15 @@ public class ReadFileStatement implements Statement {
             throw new MyException("variable not defined");
         }
         return null;
+    }
+
+    @Override
+    public DictionaryInterface<String, Type> typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        if(expression.typecheck(typeEnvironment).equals(new StringType())){
+            if(typeEnvironment.lookup(variableName).equals(new IntType())){
+                return typeEnvironment;
+            } else throw new MyException("trying to assign value from file to non-integer variable");
+        } else throw new MyException("trying to read from file given not as string!");
     }
 
     @Override

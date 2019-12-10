@@ -1,5 +1,7 @@
 package avram.pop.model.expression;
 
+import avram.pop.model.type.ReferenceType;
+import avram.pop.model.type.Type;
 import avram.pop.model.value.ReferenceValue;
 import avram.pop.model.value.Value;
 import avram.pop.utils.DictionaryInterface;
@@ -33,5 +35,15 @@ public class HeapReadingExpression implements Expression{
         } else {
             throw new MyException("expression evaluation not reference");
         }
+    }
+
+    @Override
+    public Type typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        Type type = expression.typecheck(typeEnvironment);
+        if (type instanceof ReferenceType) {
+            ReferenceType referenceType = (ReferenceType) type;
+            return referenceType.getInnerType();
+        } else
+            throw new MyException("the rH argument is not a Ref Type");
     }
 }

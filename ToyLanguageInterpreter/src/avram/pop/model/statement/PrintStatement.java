@@ -1,6 +1,8 @@
 package avram.pop.model.statement;
 
+import avram.pop.model.type.Type;
 import avram.pop.model.value.Value;
+import avram.pop.utils.DictionaryInterface;
 import avram.pop.utils.MyException;
 import avram.pop.model.control.ProgramState;
 import avram.pop.model.expression.Expression;
@@ -21,5 +23,11 @@ public class PrintStatement implements Statement {
         ListInterface<Value> outputBuffer = state.getOutputBuffer();
         outputBuffer.add(expression.evaluate(state.getSymbolTable(), state.getHeap()));
         return null;
+    }
+
+    @Override
+    public DictionaryInterface<String, Type> typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        expression.typecheck(typeEnvironment);
+        return typeEnvironment;
     }
 }

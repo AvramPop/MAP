@@ -16,4 +16,9 @@ public class IntType implements Type {
     public Value defaultValue(){
         return new IntValue(0);
     }
+
+    @Override
+    public Type copy(){
+        return new IntType();
+    }
 }

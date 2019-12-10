@@ -15,4 +15,9 @@ public class ReferenceType implements Type{
     }
     public String toString() { return "Ref(" + innerType.toString() + ")";}
     public Value defaultValue() { return new ReferenceValue(0, innerType);}
+
+    @Override
+    public Type copy(){
+        return new ReferenceType(innerType);
+    }
 }

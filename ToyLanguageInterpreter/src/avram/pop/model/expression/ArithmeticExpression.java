@@ -1,6 +1,7 @@
 package avram.pop.model.expression;
 
 import avram.pop.model.type.IntType;
+import avram.pop.model.type.Type;
 import avram.pop.model.value.IntValue;
 import avram.pop.model.value.Value;
 import avram.pop.utils.DictionaryInterface;
@@ -60,5 +61,17 @@ public class ArithmeticExpression implements Expression {
             throw new MyException("first operand is not an integer");
         }
         return null;
+    }
+
+    @Override
+    public Type typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        Type type1, type2;
+        type1 = firstOperand.typecheck(typeEnvironment);
+        type2 = secondOperand.typecheck(typeEnvironment);
+        if(type1.equals(new IntType())){
+            if(type2.equals(new IntType())){
+                return new IntType();
+            } else throw new MyException("second operand is not an integer");
+        } else throw new MyException("first operand is not an integer");
     }
 }

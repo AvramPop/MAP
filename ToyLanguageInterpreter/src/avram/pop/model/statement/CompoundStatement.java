@@ -1,5 +1,7 @@
 package avram.pop.model.statement;
 
+import avram.pop.model.type.Type;
+import avram.pop.utils.DictionaryInterface;
 import avram.pop.utils.MyException;
 import avram.pop.utils.StackInterface;
 import avram.pop.model.control.ProgramState;
@@ -22,5 +24,10 @@ public class CompoundStatement implements Statement {
         executionStack.push(secondStatement);
         executionStack.push(firstStatement);
         return null;
+    }
+
+    @Override
+    public DictionaryInterface<String, Type> typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        return secondStatement.typecheck(firstStatement.typecheck(typeEnvironment));
     }
 }

@@ -36,4 +36,14 @@ public class AssignmentStatement implements Statement {
         }
         return null;
     }
+
+    @Override
+    public DictionaryInterface<String, Type> typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        Type variableType = typeEnvironment.lookup(variableName);
+        Type expressionType = expression.typecheck(typeEnvironment);
+        if (variableType.equals(expressionType))
+            return typeEnvironment;
+        else
+            throw new MyException("Assignment: right hand side and left hand side have different types ");
+    }
 }

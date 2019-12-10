@@ -33,4 +33,10 @@ public class VariableDeclareStatement implements Statement {
         }
         return null;
     }
+
+    @Override
+    public DictionaryInterface<String, Type> typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        typeEnvironment.update(variableName, variableType);
+        return typeEnvironment;
+    }
 }

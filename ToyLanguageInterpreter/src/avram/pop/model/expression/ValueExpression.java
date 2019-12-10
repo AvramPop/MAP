@@ -1,5 +1,6 @@
 package avram.pop.model.expression;
 
+import avram.pop.model.type.Type;
 import avram.pop.model.value.Value;
 import avram.pop.utils.DictionaryInterface;
 import avram.pop.utils.HeapInterface;
@@ -22,5 +23,10 @@ public class ValueExpression implements Expression {
     @Override
     public Value evaluate(DictionaryInterface<String, Value> symbolTable, HeapInterface<Integer, Value> heap) throws MyException{
         return value;
+    }
+
+    @Override
+    public Type typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        return value.getType();
     }
 }

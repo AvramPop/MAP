@@ -1,6 +1,7 @@
 package avram.pop.model.expression;
 
 import avram.pop.model.type.BoolType;
+import avram.pop.model.type.Type;
 import avram.pop.model.value.BoolValue;
 import avram.pop.model.value.Value;
 import avram.pop.utils.DictionaryInterface;
@@ -36,6 +37,18 @@ public class LogicExpression implements Expression {
                 return new BoolValue(operationCode == 1 ? bool1 && bool2 : bool1 || bool2);
             } else throw new MyException("Operand2 is not a boolean");
         } else throw new MyException("Operand1 is not a boolean");
+    }
+
+    @Override
+    public Type typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        Type type1, type2;
+        type1 = firstOperand.typecheck(typeEnvironment);
+        type2 = secondOperand.typecheck(typeEnvironment);
+        if(type1.equals(new BoolType())){
+            if(type2.equals(new BoolType())){
+                return new BoolType();
+            } else throw new MyException("second operand is not a bool");
+        } else throw new MyException("first operand is not a bool");
     }
 
     @Override

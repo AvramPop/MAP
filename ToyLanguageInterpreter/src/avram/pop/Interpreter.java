@@ -6,16 +6,13 @@ import avram.pop.model.command.RunExample;
 import avram.pop.model.control.ProgramState;
 import avram.pop.model.expression.*;
 import avram.pop.model.statement.*;
-import avram.pop.model.type.BoolType;
-import avram.pop.model.type.IntType;
-import avram.pop.model.type.ReferenceType;
-import avram.pop.model.type.StringType;
+import avram.pop.model.type.*;
 import avram.pop.model.value.BoolValue;
 import avram.pop.model.value.IntValue;
-import avram.pop.model.value.Value;
 import avram.pop.model.value.StringValue;
-import avram.pop.repository.Repository;
+import avram.pop.model.value.Value;
 import avram.pop.repository.ListRepository;
+import avram.pop.repository.Repository;
 import avram.pop.utils.*;
 import avram.pop.view.TextMenu;
 
@@ -30,6 +27,12 @@ public class Interpreter {
                         new AssignmentStatement("v", new ValueExpression(new IntValue(2))),
                         new PrintStatement(new VariableExpression("v"))));
         DictionaryInterface<String, Value> symbolTable1 = new MyDictionary<>();
+        try{
+            program1.typecheck(new MyDictionary<>());
+        } catch(MyException e){
+            System.err.println("program 1 doesn't pass type checking");
+            System.err.println(e.toString());
+        }
         DictionaryInterface<StringValue, BufferedReader> fileTable1 = new MyDictionary<>();
         HeapInterface<Integer, Value> heap1 = new Heap<>();
         ListInterface<Value> out1 = new MyList<>();

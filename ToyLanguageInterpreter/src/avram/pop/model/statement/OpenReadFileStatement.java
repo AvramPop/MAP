@@ -3,6 +3,7 @@ package avram.pop.model.statement;
 import avram.pop.model.control.ProgramState;
 import avram.pop.model.expression.Expression;
 import avram.pop.model.type.StringType;
+import avram.pop.model.type.Type;
 import avram.pop.model.value.Value;
 import avram.pop.model.value.StringValue;
 import avram.pop.utils.MyException;
@@ -47,5 +48,12 @@ public class OpenReadFileStatement implements Statement {
             throw new MyException("expression not string");
         }
         return null;
+    }
+
+    @Override
+    public DictionaryInterface<String, Type> typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        if(expression.typecheck(typeEnvironment).equals(new StringType())){
+            return typeEnvironment;
+        } else throw new MyException("trying to open file given not as string!");
     }
 }

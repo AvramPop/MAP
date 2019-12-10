@@ -2,6 +2,8 @@ package avram.pop.model.statement;
 
 import avram.pop.model.control.ProgramState;
 import avram.pop.model.expression.Expression;
+import avram.pop.model.type.ReferenceType;
+import avram.pop.model.type.Type;
 import avram.pop.model.value.ReferenceValue;
 import avram.pop.model.value.Value;
 import avram.pop.utils.DictionaryInterface;
@@ -50,5 +52,15 @@ public class WriteHeapStatement implements Statement{
             throw new MyException("variable not defined");
         }
         return null;
+    }
+
+    @Override
+    public DictionaryInterface<String, Type> typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        Type variableType = typeEnvironment.lookup(variableName);
+        Type expressionType = expression.typecheck(typeEnvironment);
+        if (variableType.equals(new ReferenceType(expressionType)))
+            return typeEnvironment;
+        else
+            throw new MyException("Write Heap statement: right hand side and left hand side have different types ");
     }
 }

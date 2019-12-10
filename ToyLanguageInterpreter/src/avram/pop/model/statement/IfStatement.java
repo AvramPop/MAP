@@ -1,11 +1,14 @@
 package avram.pop.model.statement;
 
-import avram.pop.model.type.BoolType;
-import avram.pop.model.value.BoolValue;
-import avram.pop.model.value.Value;
-import avram.pop.utils.MyException;
 import avram.pop.model.control.ProgramState;
 import avram.pop.model.expression.Expression;
+import avram.pop.model.type.BoolType;
+import avram.pop.model.type.Type;
+import avram.pop.model.value.BoolValue;
+import avram.pop.model.value.Value;
+import avram.pop.utils.CloneFactory;
+import avram.pop.utils.DictionaryInterface;
+import avram.pop.utils.MyException;
 
 public class IfStatement implements Statement {
     private Expression expression;
@@ -36,5 +39,17 @@ public class IfStatement implements Statement {
             throw new MyException("conditional expr is not a boolean");
         }
         return null;
+    }
+
+    @Override
+    public DictionaryInterface<String, Type> typecheck(DictionaryInterface<String, Type> typeEnvironment) throws MyException{
+        Type expressionType = expression.typecheck(typeEnvironment);
+        if (expressionType.equals(new BoolType())) {
+            thenBranchStatement.typecheck(CloneFactory.cloneTypeEnvironment(typeEnvironment));
+            elseBranchStatement.typecheck(CloneFactory.cloneTypeEnvironment(typeEnvironment));
+            return typeEnvironment;
+        }
+        else
+            throw new MyException("The condition of IF has not the type bool");
     }
 }

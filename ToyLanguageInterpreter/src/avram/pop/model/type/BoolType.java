@@ -16,4 +16,9 @@ public class BoolType implements Type {
     public Value defaultValue(){
         return new BoolValue(false);
     }
+
+    @Override
+    public Type copy(){
+        return new BoolType();
+    }
 }

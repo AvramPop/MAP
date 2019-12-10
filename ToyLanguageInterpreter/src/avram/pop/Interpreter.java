@@ -1,26 +1,70 @@
 package avram.pop;
 
-import avram.pop.controller.Controller;
-import avram.pop.model.command.ExitCommand;
-import avram.pop.model.command.RunExample;
-import avram.pop.model.control.ProgramState;
-import avram.pop.model.expression.*;
-import avram.pop.model.statement.*;
-import avram.pop.model.type.*;
-import avram.pop.model.value.BoolValue;
-import avram.pop.model.value.IntValue;
-import avram.pop.model.value.StringValue;
-import avram.pop.model.value.Value;
-import avram.pop.repository.ListRepository;
-import avram.pop.repository.Repository;
-import avram.pop.utils.*;
-import avram.pop.view.TextMenu;
+import avram.pop.api.controller.Controller;
+import avram.pop.api.model.command.ExitCommand;
+import avram.pop.api.model.command.RunExample;
+import avram.pop.api.model.control.ProgramState;
+import avram.pop.api.model.expression.*;
+import avram.pop.api.model.statement.*;
+import avram.pop.api.model.type.BoolType;
+import avram.pop.api.model.type.IntType;
+import avram.pop.api.model.type.ReferenceType;
+import avram.pop.api.model.type.StringType;
+import avram.pop.api.model.value.BoolValue;
+import avram.pop.api.model.value.IntValue;
+import avram.pop.api.model.value.StringValue;
+import avram.pop.api.model.value.Value;
+import avram.pop.api.repository.ListRepository;
+import avram.pop.api.repository.Repository;
+import avram.pop.api.utils.*;
+import avram.pop.api.view.TextMenu;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 
-public class Interpreter {
+public class Interpreter extends Application {
 
-    public static void main(String[] args){
+    public static void main(String[] args){ launch(args); }
+
+    private static Controller createProgram(String programName, Statement code){
+        try{
+            code.typecheck(new MyDictionary<>());
+        } catch(MyException e){
+            System.err.println(programName + " doesn't pass type checking");
+            System.err.println(e.toString());
+        }
+        DictionaryInterface<String, Value> symbolTable = new MyDictionary<>();
+        DictionaryInterface<StringValue, BufferedReader> fileTable = new MyDictionary<>();
+        HeapInterface<Integer, Value> heap = new Heap<>();
+        ListInterface<Value> out = new MyList<>();
+        StackInterface<Statement> executionStack = new MyStack<>();
+        ProgramState programState = new ProgramState(executionStack, symbolTable, out, fileTable, code, heap);
+        Repository repository = null;
+        try{
+            repository = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/" + programName + ".log");
+        } catch(MyException e){
+            System.err.println(e.getMessage());
+        }
+        if(repository != null){
+            repository.addState(programState);
+            return new Controller(repository);
+        }
+        return null;
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("ui/fxml/ProgramSelection.fxml"));
+        primaryStage.setTitle("Hello World");
+        Scene scene = new Scene(root, 300, 275);
+        scene.getStylesheets().add(getClass().getResource("ui/css/ProgramSelection.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
         Statement program1 = new CompoundStatement(
                 new VariableDeclareStatement("v", new IntType()),
                 new CompoundStatement(
@@ -45,12 +89,12 @@ public class Interpreter {
 
         Statement program4 = new CompoundStatement(new VariableDeclareStatement("varf", new StringType()),
                 new CompoundStatement(new AssignmentStatement("varf", new ValueExpression(new StringValue("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/test.in"))),
-                new CompoundStatement(new OpenReadFileStatement(new VariableExpression("varf")),
-                new CompoundStatement(new VariableDeclareStatement("varc", new IntType()),
-                new CompoundStatement(new ReadFileStatement(new VariableExpression("varf"), "varc"),
-                new CompoundStatement(new PrintStatement(new VariableExpression("varc")),
-                new CompoundStatement(new ReadFileStatement(new VariableExpression("varf"), "varc"),
-                new CompoundStatement(new PrintStatement(new VariableExpression("varc")), new CloseReadFileStatement(new VariableExpression("varf"))))))))));
+                        new CompoundStatement(new OpenReadFileStatement(new VariableExpression("varf")),
+                                new CompoundStatement(new VariableDeclareStatement("varc", new IntType()),
+                                        new CompoundStatement(new ReadFileStatement(new VariableExpression("varf"), "varc"),
+                                                new CompoundStatement(new PrintStatement(new VariableExpression("varc")),
+                                                        new CompoundStatement(new ReadFileStatement(new VariableExpression("varf"), "varc"),
+                                                                new CompoundStatement(new PrintStatement(new VariableExpression("varc")), new CloseReadFileStatement(new VariableExpression("varf"))))))))));
 
 
         Statement program5 = new CompoundStatement(new VariableDeclareStatement("a", new IntType()),
@@ -88,7 +132,7 @@ public class Interpreter {
 
         Statement program9 = new CompoundStatement(new VariableDeclareStatement("v", new ReferenceType(new IntType())),
                 new CompoundStatement(new NewStatement("v", new ValueExpression(new IntValue(20))),
-                    new CompoundStatement(new VariableDeclareStatement("a", new ReferenceType(new ReferenceType(new IntType()))),
+                        new CompoundStatement(new VariableDeclareStatement("a", new ReferenceType(new ReferenceType(new IntType()))),
                                 new CompoundStatement(new NewStatement("a", new VariableExpression("v")),
                                         new CompoundStatement(new NewStatement("v", new ValueExpression(new IntValue(30))),
                                                 new PrintStatement(new HeapReadingExpression(new HeapReadingExpression(new VariableExpression("a")))))))));
@@ -104,9 +148,9 @@ public class Interpreter {
                                                                 new CompoundStatement(
                                                                         new PrintStatement(new VariableExpression("v")),
                                                                         new PrintStatement(new HeapReadingExpression(new VariableExpression("a"))))))),
-                                            new CompoundStatement(
-                                                new PrintStatement(new VariableExpression("v")),
-                                                new PrintStatement(new HeapReadingExpression(new VariableExpression("a")))))))));
+                                                new CompoundStatement(
+                                                        new PrintStatement(new VariableExpression("v")),
+                                                        new PrintStatement(new HeapReadingExpression(new VariableExpression("a")))))))));
 
         Statement test = new CompoundStatement(
                 new VariableDeclareStatement("v", new IntType()),
@@ -128,36 +172,10 @@ public class Interpreter {
         menu.addCommand(new RunExample("10", "program10", createProgram("program10", program10)));
         menu.addCommand(new RunExample("11", "test", createProgram("test", test)));
 
-        try{
-            menu.show();
-        } catch(InterruptedException e){
-            e.printStackTrace();
-        }
-    }
-
-    private static Controller createProgram(String programName, Statement code){
-        try{
-            code.typecheck(new MyDictionary<>());
-        } catch(MyException e){
-            System.err.println(programName + " doesn't pass type checking");
-            System.err.println(e.toString());
-        }
-        DictionaryInterface<String, Value> symbolTable = new MyDictionary<>();
-        DictionaryInterface<StringValue, BufferedReader> fileTable = new MyDictionary<>();
-        HeapInterface<Integer, Value> heap = new Heap<>();
-        ListInterface<Value> out = new MyList<>();
-        StackInterface<Statement> executionStack = new MyStack<>();
-        ProgramState programState = new ProgramState(executionStack, symbolTable, out, fileTable, code, heap);
-        Repository repository = null;
-        try{
-            repository = new ListRepository("/home/dani/Desktop/code/faculta/an2/sem1/map/ToyLanguageInterpreter/logs/" + programName + ".log");
-        } catch(MyException e){
-            System.err.println(e.getMessage());
-        }
-        if(repository != null){
-            repository.addState(programState);
-            return new Controller(repository);
-        }
-        return null;
+//        try{
+//            menu.show();
+//        } catch(InterruptedException e){
+//            e.printStackTrace();
+//        }
     }
 }

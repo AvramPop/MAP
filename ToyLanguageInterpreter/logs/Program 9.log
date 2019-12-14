@@ -1,6 +1,6 @@
 id = 1
 ExeStack:
-(VarDeclStmt{name='a', typ=Ref(int)}; (v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@55a17313; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))))))
+(VarDeclStmt{name='a', typ=Ref(int)}; (v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@57782037; (print(VarExp{id='v'}); (v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}})))))))
 VarDeclStmt{name='v', typ=int}
 SymTable:
 Out:
@@ -9,7 +9,7 @@ Heap:
 
 id = 1
 ExeStack:
-(VarDeclStmt{name='a', typ=Ref(int)}; (v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@55a17313; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))))))
+(VarDeclStmt{name='a', typ=Ref(int)}; (v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@57782037; (print(VarExp{id='v'}); (v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}})))))))
 SymTable:
 v: (int) value is: 0
 Out:
@@ -18,7 +18,7 @@ Heap:
 
 id = 1
 ExeStack:
-(v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@55a17313; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}})))))
+(v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@57782037; (print(VarExp{id='v'}); (v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}}))))))
 VarDeclStmt{name='a', typ=Ref(int)}
 SymTable:
 v: (int) value is: 0
@@ -28,7 +28,7 @@ Heap:
 
 id = 1
 ExeStack:
-(v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@55a17313; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}})))))
+(v = ValueExp{e=(int) value is: 10}; (new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@57782037; (print(VarExp{id='v'}); (v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}}))))))
 SymTable:
 a: (ref) address is: 0 location type: int
 v: (int) value is: 0
@@ -38,7 +38,7 @@ Heap:
 
 id = 1
 ExeStack:
-(new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@55a17313; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))))
+(new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@57782037; (print(VarExp{id='v'}); (v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}})))))
 v = ValueExp{e=(int) value is: 10}
 SymTable:
 a: (ref) address is: 0 location type: int
@@ -49,7 +49,7 @@ Heap:
 
 id = 1
 ExeStack:
-(new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@55a17313; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))))
+(new a value ValueExp{e=(int) value is: 22}; (avram.pop.api.model.statement.ForkStatement@57782037; (print(VarExp{id='v'}); (v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}})))))
 SymTable:
 a: (ref) address is: 0 location type: int
 v: (int) value is: 10
@@ -59,7 +59,7 @@ Heap:
 
 id = 1
 ExeStack:
-(avram.pop.api.model.statement.ForkStatement@55a17313; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}})))
+(avram.pop.api.model.statement.ForkStatement@57782037; (print(VarExp{id='v'}); (v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}}))))
 new a value ValueExp{e=(int) value is: 22}
 SymTable:
 a: (ref) address is: 0 location type: int
@@ -70,7 +70,7 @@ Heap:
 
 id = 1
 ExeStack:
-(avram.pop.api.model.statement.ForkStatement@55a17313; (print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}})))
+(avram.pop.api.model.statement.ForkStatement@57782037; (print(VarExp{id='v'}); (v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}}))))
 SymTable:
 a: (ref) address is: 1 location type: int
 v: (int) value is: 10
@@ -81,8 +81,8 @@ Heap:
 
 id = 1
 ExeStack:
-(print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))
-avram.pop.api.model.statement.ForkStatement@55a17313
+(print(VarExp{id='v'}); (v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}})))
+avram.pop.api.model.statement.ForkStatement@57782037
 SymTable:
 a: (ref) address is: 1 location type: int
 v: (int) value is: 10
@@ -93,7 +93,7 @@ Heap:
 
 id = 1
 ExeStack:
-(print(VarExp{id='v'}); print(HeapRead{expr=VarExp{id='a'}}))
+(print(VarExp{id='v'}); (v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}})))
 SymTable:
 a: (ref) address is: 1 location type: int
 v: (int) value is: 10
@@ -115,7 +115,7 @@ Heap:
 
 id = 1
 ExeStack:
-print(HeapRead{expr=VarExp{id='a'}})
+(v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}}))
 print(VarExp{id='v'})
 SymTable:
 a: (ref) address is: 1 location type: int
@@ -139,7 +139,7 @@ Heap:
 
 id = 1
 ExeStack:
-print(HeapRead{expr=VarExp{id='a'}})
+(v = ValueExp{e=(int) value is: 1000}; print(HeapRead{expr=VarExp{id='a'}}))
 SymTable:
 a: (ref) address is: 1 location type: int
 v: (int) value is: 10
@@ -163,12 +163,13 @@ Heap:
 
 id = 1
 ExeStack:
+print(HeapRead{expr=VarExp{id='a'}})
+v = ValueExp{e=(int) value is: 1000}
 SymTable:
 a: (ref) address is: 1 location type: int
 v: (int) value is: 10
 Out:
 (int) value is: 10
-(int) value is: 30
 FileTable:
 Heap:
 1: (int) value is: 30
@@ -182,7 +183,18 @@ a: (ref) address is: 1 location type: int
 v: (int) value is: 10
 Out:
 (int) value is: 10
-(int) value is: 30
+FileTable:
+Heap:
+1: (int) value is: 30
+
+id = 1
+ExeStack:
+print(HeapRead{expr=VarExp{id='a'}})
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 1000
+Out:
+(int) value is: 10
 FileTable:
 Heap:
 1: (int) value is: 30
@@ -193,6 +205,17 @@ ExeStack:
 SymTable:
 a: (ref) address is: 1 location type: int
 v: (int) value is: 32
+Out:
+(int) value is: 10
+FileTable:
+Heap:
+1: (int) value is: 30
+
+id = 1
+ExeStack:
+SymTable:
+a: (ref) address is: 1 location type: int
+v: (int) value is: 1000
 Out:
 (int) value is: 10
 (int) value is: 30

@@ -1,5 +1,7 @@
 package avram.pop.api.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class MyStack<T> implements StackInterface<T> {
@@ -35,6 +37,11 @@ public class MyStack<T> implements StackInterface<T> {
             sb.append(entry.toString()).append("\n");
         }
         return sb.toString();
+    }
+
+    @Override
+    public List<T> toList(){
+        return new ArrayList<>(stack);
     }
 
     @Override

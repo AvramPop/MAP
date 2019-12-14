@@ -57,4 +57,9 @@ public class MyList<T> implements ListInterface<T> {
         }
         return sb.toString();
     }
+
+    @Override
+    public List<T> toList(){
+        return list;
+    }
 }

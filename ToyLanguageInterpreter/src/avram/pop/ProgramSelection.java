@@ -19,8 +19,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -123,12 +125,13 @@ public class ProgramSelection {
                                                                 new CompoundStatement(
                                                                         new PrintStatement(new VariableExpression("v")),
                                                                         new PrintStatement(new HeapReadingExpression(new VariableExpression("a"))))))),
-                                                new CompoundStatement(
-                                                        new PrintStatement(new VariableExpression("v")),
-                                                        new PrintStatement(new HeapReadingExpression(new VariableExpression("a")))))))));
+                                                new CompoundStatement(new PrintStatement(new VariableExpression("v")),
+                                                                new CompoundStatement(
+                                                                        new AssignmentStatement("v", new ValueExpression(new IntValue(1000))),
+                                                                        new PrintStatement(new HeapReadingExpression(new VariableExpression("a"))))))))));
 
         Statement test = new CompoundStatement(
-                new VariableDeclareStatement("v", new IntType()),
+                new VariableDeclareStatement("v", new BoolType()),
                 new CompoundStatement(
                         new AssignmentStatement("v", new ValueExpression(new IntValue(2))),
                         new PrintStatement(new VariableExpression("v"))));
@@ -152,13 +155,8 @@ public class ProgramSelection {
     }
 
 
-    private static Controller createProgram(String programName, Statement code){
-        try{
-            code.typecheck(new MyDictionary<>());
-        } catch(MyException e){
-            System.err.println(programName + " doesn't pass type checking");
-            System.err.println(e.toString());
-        }
+    private static Controller createProgram(String programName, Statement code) throws MyException{
+        code.typecheck(new MyDictionary<>());
         DictionaryInterface<String, Value> symbolTable = new MyDictionary<>();
         DictionaryInterface<StringValue, BufferedReader> fileTable = new MyDictionary<>();
         HeapInterface<Integer, Value> heap = new Heap<>();
@@ -180,14 +178,24 @@ public class ProgramSelection {
 
     public void runSelectedProgram() throws IOException{
         int selectedIndex = programListView.getSelectionModel().getSelectedIndex();
+        try{
+            Controller controller = createProgram("Program " + selectedIndex, programList.get(selectedIndex));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProgramRun.fxml"));
+            loader.setControllerFactory(c -> new ProgramRun(controller));
+            Parent programWindowRoot = loader.load();
+            Scene scene = new Scene(programWindowRoot, 800, 800);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ProgramRun.fxml"));
-        loader.setControllerFactory(c -> new ProgramRun(createProgram("Program " + selectedIndex, programList.get(selectedIndex))));
-        Parent programWindowRoot = loader.load();
-        Scene scene = new Scene(programWindowRoot, 800, 800);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch(MyException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Typechecker");
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.setContentText(e.getMessage());
 
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+            alert.showAndWait();
+        }
+
     }
 }

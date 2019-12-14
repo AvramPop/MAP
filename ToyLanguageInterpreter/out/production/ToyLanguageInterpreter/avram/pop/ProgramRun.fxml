@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="avram.pop.ProgramRun">
+   <children>
+      <Label fx:id="programNameLabel" />
+      <Label fx:id="numberOfProgramStatesLabel" text="Program states:" />
+      <HBox prefHeight="296.0" prefWidth="600.0">
+         <children>
+            <TableView fx:id="heapTable" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <ListView fx:id="outListView" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="filetableListView" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="336.0" prefWidth="600.0">
+         <children>
+            <TableView fx:id="programStateListView" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <ListView fx:id="executionStackListView" prefHeight="190.0" prefWidth="403.0" />
+         </children>
+      </HBox>
+      <ButtonBar prefHeight="173.0" prefWidth="600.0">
+        <buttons>
+          <Button fx:id="oneStepButton" mnemonicParsing="false" onMouseClicked="#runOneStep" text="One step" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</VBox>

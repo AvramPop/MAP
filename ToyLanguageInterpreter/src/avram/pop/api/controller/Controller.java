@@ -6,7 +6,10 @@ import avram.pop.api.model.value.Value;
 import avram.pop.api.repository.Repository;
 import avram.pop.api.utils.MyException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -16,9 +19,14 @@ import java.util.stream.Stream;
 
 public class Controller {
     private Repository repository;
+    public final String name;
     private ExecutorService executor;
-    public Controller(Repository repository){
+    public Controller(Repository repository, String name){
         this.repository = repository;
+        this.name = name;
+    }
+    public String programToLogString(){
+        return repository.getProgramList().get(0).getExecutionStack().toLogString();
     }
 
     public void allStep() throws MyException, InterruptedException{

@@ -184,7 +184,7 @@ public class ProgramSelection {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ProgramRun.fxml"));
         loader.setControllerFactory(c -> new ProgramRun(createProgram("Program " + selectedIndex, programList.get(selectedIndex))));
         Parent programWindowRoot = loader.load();
-        Scene scene = new Scene(programWindowRoot, 400, 400);
+        Scene scene = new Scene(programWindowRoot, 800, 800);
 
         Stage stage = new Stage();
         stage.setScene(scene);

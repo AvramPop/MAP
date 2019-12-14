@@ -15,12 +15,16 @@ public class ProgramState {
     private ListInterface<Value> outputBuffer;
     private static int lastId;
     private int id;
+
     private Statement originalProgram; //optional field, but good to have
 
     public DictionaryInterface<StringValue, BufferedReader> getFileTable(){
         return fileTable;
     }
 
+    public int getId(){
+        return id;
+    }
 
     public void setFileTable(DictionaryInterface<StringValue, BufferedReader> fileTable){
         this.fileTable = fileTable;

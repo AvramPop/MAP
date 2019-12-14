@@ -15,7 +15,7 @@ public class Interpreter extends Application {
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ProgramSelection.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root, 800, 300);
         scene.getStylesheets().add(getClass().getResource("ui/css/ProgramSelection.css").toExternalForm());
 
         primaryStage.setScene(scene);

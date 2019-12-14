@@ -21,6 +21,7 @@ public class Controller {
     private Repository repository;
     public final String name;
     private ExecutorService executor;
+    private List<ProgramState> programList;
     public Controller(Repository repository, String name){
         this.repository = repository;
         this.name = name;
@@ -29,22 +30,38 @@ public class Controller {
         return repository.getProgramList().get(0).getExecutionStack().toLogString();
     }
 
-    public void allStep() throws MyException, InterruptedException{
-        executor = Executors.newFixedThreadPool(2);
+    public int getNumberOfPrograms(){
+        return repository.getProgramList().size();
+    }
+
+    public Repository getRepository(){
+        return repository;
+    }
+
+    public boolean done(){
+        return !(programList.size() > 0);
+    }
+
+    public void oneStep() throws MyException, InterruptedException{
+        garbageCollector(programList);
+        oneStepForAllPrograms(programList);
         //remove the completed programs
-        List<ProgramState> programList = removeCompletedProgram(repository.getProgramList());
-        while(programList.size() > 0){
-            garbageCollector(programList);
-            oneStepForAllPrograms(programList);
-            //remove the completed programs
-            programList = removeCompletedProgram(repository.getProgramList());
-        }
+        programList = removeCompletedProgram(repository.getProgramList());
+    }
+
+    public void endExecution(){
         executor.shutdownNow();
         //HERE the repository still contains at least one Completed Prg
         // and its List<PrgState> is not empty. Note that oneStepForAllPrg calls the method
         //setPrgList of repository in order to change the repository
         // update the repository state
         repository.setProgramList(programList);
+    }
+
+    public void prepareForExecution(){
+        executor = Executors.newFixedThreadPool(2);
+        //remove the completed programs
+        programList = removeCompletedProgram(repository.getProgramList());
     }
 
     private Map<Integer, Value> garbageCollector(List<ProgramState> programList){
@@ -79,14 +96,6 @@ public class Controller {
     }
 
     private void oneStepForAllPrograms(List<ProgramState> programStateList) throws InterruptedException{
-       // repository.logMessage("before one step:\n");
-//        programStateList.forEach(programState -> {
-//            try{
-//                repository.logProgramState(programState);
-//            } catch(MyException e){
-//                e.printStackTrace();
-//            }
-//        });
 
         List<Callable<ProgramState>> callList =
                 programStateList.stream()
@@ -107,7 +116,6 @@ public class Controller {
 
         programStateList.addAll(newProgramList);
 
-        //repository.logMessage("after one step:\n");
         programStateList.forEach(program -> {
             try{
                 repository.logProgramState(program);
